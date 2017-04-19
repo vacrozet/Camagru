@@ -1,3 +1,6 @@
+<?php  
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,19 +10,31 @@
 <body>
 	<header class="header">
 		<div class="inheaderborder">
-		<!--UTILISATEUR DECONNECTER-->
+		<?php  
+			if ($_SESSION['user_name'] == "")
+			{
+		?>
 			<div class="enfant sizeborderleft">
-				<form method="post" action="./connexion.php>">
+				<form method="post" action="./connexion.php">
 					<input type="Login" name="Login" placeholder="Login"><br /><br />
-					<input type="Password" name="Password" placeholder="Password"><br /><br />
+					<input type="Password" name="Passwd" placeholder="Password"><br /><br />
 					<input type="submit" name="Connexion" value="Connexion">
 				</form><br />
 				<a class="colorlink" href="./inscription.html">Creation de compte</a></div>
- 	<!-- UTILISATEUR CONNECTER -->
-<!--  			<br /><br />
- 			<a class="colorlink" href="./mon_compte.html">ACCEDER A MON COMPTE</a><br /><br />
- 			<a class="colorlink" href="./logout.php">DECONNEXION</a>
- --> 		</div>
+			<?php  
+			}
+			else
+			{
+			?>
+ 			<div class="enfant sizeborderleft">
+	 			<p class="colorlink" style="font-size: 20px;">Login:<?php echo $_SESSION['user_name'];?></p>
+	 			<a class="colorlink" href="./mon_compte.html">ACCEDER A MON COMPTE</a><br /><br />
+	 			<a class="colorlink" href="./logout.php">DECONNEXION</a>
+ 			</div>
+ 			<?php
+ 			}
+ 			?>
+ 		</div>
 		<div class="inheadercenter">
 			<div class="enfant"><U><I><h1>Camagru</h1></I></U></div>
 		</div>
