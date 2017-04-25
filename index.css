@@ -77,3 +77,74 @@ html, body {
 	height: 100%;
 	display: flex;
 }
+.take_picture {
+	height: 80%;
+	width: 70%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	background-color: grey;
+	border-radius: 20px;
+	box-shadow: 10px 10px 2em black;
+	min-width: 500px;
+	min-height: 500px;
+}
+.parent {
+	display: flex;
+	flex-direction: row;
+}
+.parents {
+	display: flex;
+	min-width: 600px;
+}
+.choose {
+	height: 20%;
+	display: flex;
+	flex-direction: column;
+}
+.cadre {
+	border: solid 1px black;
+	height: 70%;
+}
+.enter {
+	border: solid 1px black;
+	height: 10%;
+}
+.direction {
+	display: flex;
+	flex-direction: row;
+}
+.take {
+	border: solid 1px black;
+	width: 70%;
+	height: 100%;
+}
+.visu {
+	height: 100%;
+	width: 30%;
+	min-height: 500px;
+	min-width: 200px;
+	display: flex;
+}
+.test {
+	margin: auto;
+	border: solid 1px red;
+	height: 80%;
+	width: 90%;
+	background: grey;
+	box-shadow: 10px 10px 2em black;
+	display: flex;
+	flex-direction: column;
+}
+.choose_filtre {
+	height: 10%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	border: solid 1px red;	
+}
+.defile_photo {
+	border: solid 1px red;
+	height: 90%;
+	width: 100%;
+}

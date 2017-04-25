@@ -20,7 +20,8 @@ session_start();
 					<input type="Password" name="Passwd" placeholder="Password"><br /><br />
 					<input type="submit" name="Connexion" value="Connexion">
 				</form><br />
-				<a class="colorlink" href="./inscription.html">Creation de compte</a></div>
+				<a class="colorlink" href="./inscription.html">Creation de compte</a><br />
+				<a class="colorlink" href="./recup_passwd.html">Mot de passe oublié</a></div>				
 			<?php  
 			}
 			else
@@ -39,11 +40,30 @@ session_start();
 			<div class="enfant"><U><I><h1>Camagru</h1></I></U></div>
 		</div>
 		<div class="inheaderborder">
+			<?php 
+				if ($_SESSION['user_name'] != "")
+				{
+			?>
 			<div class="enfant">
-				<a href="./take_picture.html">
+				<a href="./take_picture.php">
 					<img class="appareil" src="./img/instagram.png">
 				</a>
 			</div>
+			<?php 
+				}
+				else
+				{
+			?>
+			<div class="enfant">
+				<a href="#">
+					<img class="appareil" src="./img/instagram.png">
+				</a>
+			</div>
+			<?php 
+			}
+			?>
+
+
 		</div>		
 	</header>
 	<div class="divcenter">

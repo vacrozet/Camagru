@@ -29,7 +29,15 @@ function check_cp($cp)
 		return false;
 }
 
-if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != NULL && $_POST['condition'] == "ok" && $_POST['inscription'] == "Inscription")
+function check_mail($mail)
+{
+	if (preg_match('#^[a-z0-9._-]+@(gmail|hotmail|me).[a-z]{2,4}$#', $mail) == 1)
+		return true;
+	else
+		return false;
+}
+
+if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != NULL && $_POST['Mail'] != "" && $_POST['condition'] == "ok" && $_POST['inscription'] == "Inscription")
  {
 	$login = $_POST['Login'];
 	$login = trim($login);
@@ -53,6 +61,8 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 	$ville = trim($ville);
 	$numero = $_POST['Numero'];
 	$numero = trim($numero);
+	$mail = $_POST['Mail'];
+	$mail = trim($mail);
 
 	if (check_passwd($passwd, $repasswd) == false)
 		header('Location: ./inscription.html');
@@ -60,6 +70,8 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 		$numero = "0600000000";
 	if (check_cp($cp) == false)
 		$cp = NULL;
+	if (check_mail($mail) == false)
+		header('Location: ./inscription.html');
 
 
 	if (!($db = mysqli_connect('localhost', 'root', 'root', 'camagru')))
@@ -69,7 +81,7 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 	$nb = mysqli_num_rows($result);
 	if ($nb == 0)
 	{
-		$req = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`) VALUES (NULL, '".$login."', '".$passwd."', '".$nom."', '".$prenom."', '".$adresse."', '".$cp."', '".$ville."', '".$numero."')";
+		$req = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`) VALUES (NULL, '".$login."', '".$passwd."', '".$nom."', '".$prenom."', '".$adresse."', '".$cp."', '".$ville."', '".$numero."', '".$mail."')";
 		mysqli_query($db, $req);
     	header('Location: ./inscription_ok.html');
 	}
