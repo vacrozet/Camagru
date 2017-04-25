@@ -3,7 +3,6 @@ session_start();
 
 function send_mail($mail)
 {
-	//=====Déclaration des messages au format texte et au format HTML.
 	$message_txt = "Salut, si tu recois ce message c'est que tu as t'inscrire a mon super site \"CAMAGRU\"";
 	$message_html = "
 	<html>
@@ -21,58 +20,26 @@ function send_mail($mail)
 		</div>
 	</body>
 	</html>";
-	//==========	 
-	 
-	//=====Création de la boundary.
 	$boundary = "-----=".md5(rand());
 	$boundary_alt = "-----=".md5(rand());
-	//==========
-	 
-	//=====Définition du sujet.
 	$sujet = "Creation de Compte Camagru";
-	//=========
-	 
-	//=====Création du header de l'e-mail.
 	$header = "From: \"Camagru\"<noreply@gmail.com>".PHP_EOL;
 	$header.= "Reply-to: \"Camagru\" <noreply@gmail.com>".PHP_EOL;
 	$header.= "MIME-Version: 1.0".PHP_EOL;
 	$header.= "Content-Type: multipart/mixed;".PHP_EOL." boundary=\"$boundary\"".PHP_EOL;
-	//==========
-	 
-	//=====Création du message.
 	$message = PHP_EOL."--".$boundary.PHP_EOL;
 	$message.= "Content-Type: multipart/alternative;".PHP_EOL." boundary=\"$boundary_alt\"".PHP_EOL;
 	$message.= PHP_EOL."--".$boundary_alt.PHP_EOL;
-	//=====Ajout du message au format texte.
 	$message.= "Content-Type: text/plain; charset=\"ISO-8859-1\"".PHP_EOL;
 	$message.= "Content-Transfer-Encoding: 8bit".PHP_EOL;
 	$message.= PHP_EOL.$message_txt.PHP_EOL;
-	//==========
-	 
 	$message.= PHP_EOL."--".$boundary_alt.PHP_EOL;
-	 
-	//=====Ajout du message au format HTML.
 	$message.= "Content-Type: text/html; charset=\"ISO-8859-1\"".PHP_EOL;
 	$message.= "Content-Transfer-Encoding: 8bit".PHP_EOL;
 	$message.= PHP_EOL.$message_html.PHP_EOL;
-	//==========
-	 
-	//=====On ferme la boundary alternative.
 	$message.= PHP_EOL."--".$boundary_alt."--".PHP_EOL;
-	//==========
-	 
-	 
-	 
 	$message.= PHP_EOL."--".$boundary.PHP_EOL;
-	//========== 
-	//=====Envoi de l'e-mail.
 	mail($mail,$sujet,$message,$header);
-	// echo $mail;
-	// echo $sujet;
-	// echo $message;
-	// echo $header;
-	 
-	//==========
 }
 
 function getalluser()
@@ -118,9 +85,9 @@ if ($_POST['Login'] != "" && $_POST['Recup'] == "Recevoir un nouveau mot de pass
 	    }
 	}
 	else
-		header('Location: ./recup_passwd.html');
+		header('Location: ./inscription_ok.html');
 }
 else
-	header('Location: ./recup_passwd.html');
+	header('Location: ./inscription_ok.html');
 
 ?>
