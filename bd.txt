@@ -14,3 +14,11 @@ Table PHOTO :
 - Date de la photo
 - png utiliser
 - utilisateur qui a pris la photo
+
+
+
+
+
+
+
+OBJECTIF DE LA JOURNEE, EN FINIR AVEC LES MAILS;

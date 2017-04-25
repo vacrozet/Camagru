@@ -1,4 +1,4 @@
-			<?php  
+<?php  
 session_start();
 ?>
 <!DOCTYPE html>
@@ -69,11 +69,16 @@ session_start();
 		<div class="visu">
 			<div class="enfant test">
 				<div class="choose_filtre">
-					<div style="height: 50%; text-align: center; border: solid 1px black;">
-						<p style="color: white; font-size: 0.3vw;"><u><B><I>visulisation des anciennes photo</I></B></u></p>
+					<div class="ecart">
+						<div class="enfant">
+							<p style="font-size: 16px; "><u><B><I>visulisation des anciennes photo</I></B></u></p>
+						</div>
 					</div>
-					<div style="height: 50%;">
-						
+					<div class="ecart" style="border: solid 1px red;">
+							<div class="dropdown" style="border: solid 1px red;">
+								<button class="bouton" class="dropbtn">------>filtre<------</button>
+								<?php include "./menu.php"; ?>
+							</div>
 					</div>
 				</div>
 				<div class="defile_photo">

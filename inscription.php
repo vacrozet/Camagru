@@ -63,6 +63,7 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 	$numero = trim($numero);
 	$mail = $_POST['Mail'];
 	$mail = trim($mail);
+	$actif = "NON";
 
 	if (check_passwd($passwd, $repasswd) == false)
 		header('Location: ./inscription.html');
@@ -74,14 +75,14 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 		header('Location: ./inscription.html');
 
 
-	if (!($db = mysqli_connect('localhost', 'root', 'root', 'camagru')))
+	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
 		echo "ERROR\n";
 	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."'";
 	$result = mysqli_query($db, $req);
 	$nb = mysqli_num_rows($result);
 	if ($nb == 0)
 	{
-		$req = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`) VALUES (NULL, '".$login."', '".$passwd."', '".$nom."', '".$prenom."', '".$adresse."', '".$cp."', '".$ville."', '".$numero."', '".$mail."')";
+		$req = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`, `Actif`) VALUES (NULL, '".$login."', '".$passwd."', '".$nom."', '".$prenom."', '".$adresse."', '".$cp."', '".$ville."', '".$numero."', '".$mail."', '".$actif."')";
 		mysqli_query($db, $req);
     	header('Location: ./inscription_ok.html');
 	}

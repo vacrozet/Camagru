@@ -5,10 +5,10 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != "" && $_POST['Connexion'] == "C
 {
 	$login = $_POST['Login'];
 	$passwd = hash('whirlpool', $_POST['Passwd']);
-	if (!($db = mysqli_connect('localhost', 'root', 'root', 'camagru')))
+	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
 		echo "ERROR\n";
 
-	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."' AND `password` LIKE '".$passwd."'";
+	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."' AND `password` LIKE '".$passwd."' AND `Actif` LIKE 'OUI'";
 	$result = mysqli_query($db, $req);
 	$nb = mysqli_num_rows($result);
 	if ($nb == 1)
