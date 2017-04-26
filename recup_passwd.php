@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +21,8 @@
 		<div class="page">
 			<div class="enfant">
 				<form method="Post" action="./recup.php"><br />
-					<input style="text-align: center;" type="Login"     name="Login"      placeholder="Login"><br /><br />
-					<input type="submit" name="Recup" value="Recevoir un nouveau mot de passe">
+					<input style="text-align: center;<?php if ($_SESSION['erreur_mail'] == 1){ ?>border: solid 1px red; <?php } $_SESSION['erreur_mail'] = 0;?>" type="Mail"     name="mail"      placeholder="Mail"><br /><br />
+					<input type="submit" name="Recup" value="Reset password">
 				</form><br />
 			</div>
  		</div>

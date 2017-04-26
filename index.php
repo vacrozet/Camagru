@@ -20,8 +20,8 @@ session_start();
 					<input type="Password" name="Passwd" placeholder="Password"><br /><br />
 					<input type="submit" name="Connexion" value="Connexion">
 				</form><br />
-				<a class="colorlink" href="./inscription.html">Creation de compte</a><br />
-				<a class="colorlink" href="./recup_passwd.html">Mot de passe oublié</a></div>				
+				<a class="colorlink" href="./inscription.php">Creation de compte</a><br />
+				<a class="colorlink" href="./recup_passwd.php">Mot de passe oublié</a></div>				
 			<?php  
 			}
 			else

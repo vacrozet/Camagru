@@ -1,95 +1,46 @@
 <?php
 session_start();
-
-function check_passwd($passwd, $re_passwd)
-{
-	$passwd = hash('whirlpool', $passwd);
-	$re_passwd = hash('whirlpool', $re_passwd);
-	if (strcmp($passwd, $re_passwd) == 0)
-		return true;
-	else
-		return false;
-}
-
-function check_mobile($numero)
-{
-	if ($numero[0] != "0")
-		return false;
-	if (preg_match('#^[0-9]{10,10}$#', $numero) == 1)
-		return true;
-	else
-		return false;
-}
-
-function check_cp($cp)
-{
-	if (preg_match('#[0-9]{5}#', $cp))
-		return true;
-	else
-		return false;
-}
-
-function check_mail($mail)
-{
-	if (preg_match('#^[a-z0-9._-]+@(gmail|hotmail|me).[a-z]{2,4}$#', $mail) == 1)
-		return true;
-	else
-		return false;
-}
-
-if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != NULL && $_POST['Mail'] != "" && $_POST['condition'] == "ok" && $_POST['inscription'] == "Inscription")
- {
-	$login = $_POST['Login'];
-	$login = trim($login);
-	$passwd = $_POST['Passwd'];
-	$repasswd = $_POST['Re-passwd'];
-	$passwd = trim($passwd);
-	$repasswd = trim($repasswd);
-	$passwd = hash('whirlpool', $passwd);
-	$repasswd = hash('whirlpool', $repasswd);
-	$prenom = $_POST['Prenom'];
-	$prenom = trim($prenom);
-	$nom = $_POST['Nom'];
-	$nom = trim($nom);
-	$adresse = $_POST['Adresse'];
-	$adresse = trim($adresse);
-	$prenom = $_POST['Prenom'];
-	$prenom = trim($prenom);
-	$cp = $_POST['cp'];
-	$cp = trim($cp);
-	$ville = $_POST['Ville'];
-	$ville = trim($ville);
-	$numero = $_POST['Numero'];
-	$numero = trim($numero);
-	$mail = $_POST['Mail'];
-	$mail = trim($mail);
-	$actif = "NON";
-
-	if (check_passwd($passwd, $repasswd) == false)
-		header('Location: ./inscription.html');
-	if (check_mobile($numero) == false)
-		$numero = "0600000000";
-	if (check_cp($cp) == false)
-		$cp = NULL;
-	if (check_mail($mail) == false)
-		header('Location: ./inscription.html');
-
-
-	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
-		echo "ERROR\n";
-	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."'";
-	$result = mysqli_query($db, $req);
-	$nb = mysqli_num_rows($result);
-	if ($nb == 0)
-	{
-		$req = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`, `Actif`) VALUES (NULL, '".$login."', '".$passwd."', '".$nom."', '".$prenom."', '".$adresse."', '".$cp."', '".$ville."', '".$numero."', '".$mail."', '".$actif."')";
-		mysqli_query($db, $req);
-    	header('Location: ./inscription_ok.html');
-	}
-	else
-		header('Location: ./inscription.html');
-}
-else
-	header('Location: ./inscription.html');
-
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inscription | Camagru</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+	<header class="header">
+		<div class="inheaderborder enfant">
+			<div class="enfant" ><a class="colorlink" href="./index.php"> REVENIR A LA PAGE <br /> D'ACCEUIL</a></div>
+		</div>
+		<div class="inheadercenter">
+			<div class="enfant"><U><I><h1>Inscription | Camagru</h1></I></U></div>
+		</div>
+		<div class="inheaderborder">
+		</div>		
+	</header>
+		<div class="page">
+			<div class="enfant">
+				<form method="Post" action="./add_user.php"><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur_1'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_1'] = 0; ?>" type="Login"    name="Login"     placeholder="Login*"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur_2'] == 1){?>border: solid 1px red; <?php }?>" type="Password" name="Passwd"    placeholder="Password*"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur_2'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_2'] = 0; ?>" type="Password" name="Re-passwd" placeholder="Re-Password*"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur_3'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_3'] = 0; ?>" type="Prenom"   name="Prenom"    placeholder="Prenom"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur_4'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_4'] = 0; ?>" type="Nom"      name="Nom"       placeholder="Nom"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur_5'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_5'] = 0; ?>" type="Adresse"  name="Adresse"   placeholder="Adresse"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur_6'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_6'] = 0; ?>" type="cp"       name="cp"        placeholder="cp"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur_7'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_7'] = 0; ?>" type="Ville"    name="Ville"     placeholder="Ville"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur_8'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_8'] = 0; ?>" type="Numero"   name="Numero"    placeholder="Numero"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur_9'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_9'] = 0; ?>" type="Mail"     name="Mail"      placeholder="Mail*"><br /><br />
+					<input type="checkbox" name="condition" Value="ok"><span <?php if ($_SESSION['erreur_10'] == 1){ ?> style="color: red;"<?php } $_SESSION['erreur_10'] = 0;?>> J'accepte les conditions generale d'utilisation*</span><br />
+					<input type="submit" name="inscription" value="Inscription">
+					<?php if ($_SESSION['erreur_login'] == 1){?> <p style="color: red;">Un compte est déjà créer</p><?php $_SESSION['erreur_login'] = 0; }?>
+				</form><br />
+			</div>
+ 		</div>
+	<footer class="bdfooter">
+		<div class="auteur">
+		<div class="enfant">@vacrozet 2017 | Camagru</div>
+		</div>
+	</footer>
+</html>
+</body>

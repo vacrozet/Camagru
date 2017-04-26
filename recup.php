@@ -1,8 +1,9 @@
 <?php
 session_start();
 
-function send_mail($mail)
+function send_mail($mail, $login)
 {
+	$lien = "http://localhost:8080/camagru/modify_passwd.php";
 	$message_txt = "Salut, si tu recois ce message c'est que tu as t'inscrire a mon super site \"CAMAGRU\"";
 	$message_html = "
 	<html>
@@ -10,12 +11,12 @@ function send_mail($mail)
 	<body style=\"display: flex; flex-direction: row;\">
 		<div style=\"height: 200px; width: 400px; background-color: grey; display: flex; border-radius: 8px 0 0 8px;\">
 			<div style=\"margin: auto; height: 100px; width: 200px;\">
-				<p style=\"text-align: center;\"><span style=\"font-size: 20px;\"><B>Bienvenue sur camagru</B></span><br />Merci de cliquer sur le bouton pour comfirmer votre inscription</p>
+				<p style=\"text-align: center;\"><span style=\"font-size: 20px;\"><B>Réinitilisation du mot de passe de ".$login."</B></span><br />Merci de cliquer sur le lien  qui ce trouve sur le coter pour récupérer ton mot de passe.</p>
 			</div>
 		</div>
 		<div style=\"height: 200px; width: 400px; background-color: grey; display: flex; border-radius: 0 8px 8px 0;\">
 			<div style=\"margin: auto;\">
-				<a href=\"#\"><button style=\"height: 100px; width: 100px; border-radius: 100%;\">Clique ici</button></a>
+				<a href=".$lien.">Récupère ton mot de passe.</a>
 			</div>
 		</div>
 	</body>
@@ -40,6 +41,7 @@ function send_mail($mail)
 	$message.= PHP_EOL."--".$boundary_alt."--".PHP_EOL;
 	$message.= PHP_EOL."--".$boundary.PHP_EOL;
 	mail($mail,$sujet,$message,$header);
+	header('Location: ./index.php');
 }
 
 function getalluser()
@@ -63,13 +65,14 @@ function getalluser()
 		return null;
 	}
 }
-if ($_POST['Login'] != "" && $_POST['Recup'] == "Recevoir un nouveau mot de passe")
+if ($_POST['mail'] != "" && $_POST['Recup'] == "Reset password")
 {
-	$login = $_POST['Login'];
+	$oui = "NON";
+	$mail = $_POST['mail'];
 	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
 		echo "ERROR\n";
 	
-	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."'";
+	$req = "SELECT * FROM `Utilisateur` WHERE `mail` LIKE '".$mail."'";
 	$result = mysqli_query($db, $req);
 	$nb = mysqli_num_rows($result);
 	if ($nb == 1)
@@ -77,17 +80,26 @@ if ($_POST['Login'] != "" && $_POST['Recup'] == "Recevoir un nouveau mot de pass
 	    $db = getalluser();
 	    foreach ($db as $key => $value)
 	    {
-	    	if ($value['login'] == $login)
+	    	if ($value['mail'] == $mail)
 	    		 {
 	    		 	$mail = $value['mail'];
-	    		 	send_mail($mail);
+	    		 	$login = $value['login'];
+	    		 	$req = "UPDATE `Utilisateur` SET `Actif` = '".$oui."' WHERE `utilisateur`.`login` = '".$login."'";
+					mysqli_query($db, $req);
+	    		 	send_mail($mail, $login);
 	    		 }
 	    }
 	}
 	else
-		header('Location: ./recup_passwd.html');
+	{
+		$_SESSION['erreur_mail'] = 1;
+		header('Location: ./recup_passwd.php');
+	}
 }
 else
-	header('Location: ./recup_passwd.html');
+{
+	$_SESSION['erreur_mail'] = 1;
+	header('Location: ./recup_passwd.php');
+}
 
 ?>
