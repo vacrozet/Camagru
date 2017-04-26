@@ -5,7 +5,7 @@ session_start();
 <html>
 <head>
 	<title>Camagru</title>
-	<link rel="stylesheet" type="text/css" href="./index.css">
+	<link rel="stylesheet" type="text/css" href="./page/index.css">
 </head>
 <body>
 	<header class="header">
@@ -15,13 +15,13 @@ session_start();
 			{
 		?>
 			<div class="enfant sizeborderleft">
-				<form method="post" action="./connexion.php">
+				<form method="post" action="./script/connexion.php">
 					<input type="Login" name="Login" placeholder="Login"><br /><br />
 					<input type="Password" name="Passwd" placeholder="Password"><br /><br />
 					<input type="submit" name="Connexion" value="Connexion">
 				</form><br />
-				<a class="colorlink" href="./inscription.html">Creation de compte</a><br />
-				<a class="colorlink" href="./recup_passwd.html">Mot de passe oublié</a></div>				
+				<a class="colorlink" href="./page/inscription.php">Creation de compte</a><br />
+				<a class="colorlink" href="./page/recup_passwd.php">Mot de passe oublié</a></div>				
 			<?php  
 			}
 			else
@@ -30,7 +30,7 @@ session_start();
  			<div class="enfant sizeborderleft">
 	 			<p class="colorlink" style="font-size: 20px;">Login:<?php echo $_SESSION['user_name'];?></p>
 	 			<a class="colorlink" href="./mon_compte.html">ACCEDER A MON COMPTE</a><br /><br />
-	 			<a class="colorlink" href="./logout.php">DECONNEXION</a>
+	 			<a class="colorlink" href="./script/logout.php">DECONNEXION</a>
  			</div>
  			<?php
  			}
@@ -45,7 +45,7 @@ session_start();
 				{
 			?>
 			<div class="enfant">
-				<a href="./take_picture.php">
+				<a href="./page/take_picture.php">
 					<img class="appareil" src="./img/instagram.png">
 				</a>
 			</div>

@@ -14,14 +14,14 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != "" && $_POST['Connexion'] == "C
 	if ($nb == 1)
 	{
 		$_SESSION['user_name'] = $login;
-    	header('Location: ./index.php');
+    	header('Location: ../index.php');
 	}
 	else
 	{
 		$_SESSION['USER'] = 0;
-    	header('Location: ./index.php');
+    	header('Location: ../index.php');
 	}
 }
 else
-	    header('Location: ./index.php');
+	    header('Location: ../index.php');
 ?>

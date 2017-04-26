@@ -15,12 +15,12 @@ session_start();
 			{
 		?>
 			<div class="enfant sizeborderleft">
-				<form method="post" action="./connexion.php">
+				<form method="post" action="../script/connexion.php">
 					<input type="Login" name="Login" placeholder="Login"><br /><br />
 					<input type="Password" name="Passwd" placeholder="Password"><br /><br />
 					<input type="submit" name="Connexion" value="Connexion">
 				</form><br />
-				<a class="colorlink" href="./inscription.html">Creation de compte</a></div>
+				<a class="colorlink" href="./inscription.php">Creation de compte</a></div>
 			<?php  
 			}
 			else
@@ -45,7 +45,7 @@ session_start();
 			?>
 			<div class="enfant">
 				<a href="./take_picture.php">
-					<img class="appareil" src="./img/instagram.png">
+					<img class="appareil" src="../img/instagram.png">
 				</a>
 			</div>
 			<?php 
@@ -55,7 +55,7 @@ session_start();
 			?>
 			<div class="enfant">
 				<a href="#">
-					<img class="appareil" src="./img/instagram.png">
+					<img class="appareil" src="../img/instagram.png">
 				</a>
 			</div>
 			<?php 
