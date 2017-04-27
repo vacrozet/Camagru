@@ -47,15 +47,55 @@ session_start();
 					<I><B><U>Mon Compte</U></B></I>
 				</div>
 			</div>
-			<div style="height: 90%; width: 60%; border: solid 1px red; margin: auto;">
-				<p><?php  echo $_SESSION['login'];
-	    		 			echo $_SESSION['nom'];
-	    		 			echo $_SESSION['prenom'];
-	    		 			echo $_SESSION['adresse'];
-	    		 			echo $_SESSION['CP'];
-	    		 			echo $_SESSION['Ville'];
-	    		 			echo $_SESSION['numero'];
-	    		 			echo $_SESSION['mail'];       ?>                 </p>
+			<div style="height: 80%; width: 60%; border: solid 1px red; margin: auto; display: flex; flex-direction: row;">
+				<div style="text-align: right; height: 100%; width: 40%; min-width: 100px; border: solid 1px red;">
+					<p style=" color: white; margin-right: 10px;">Login :</p>
+					<p style=" color: white; margin-right: 10px;">Prenom :</p>
+					<p style=" color: white; margin-right: 10px;">Nom :</p>
+					<p style=" color: white; margin-right: 10px;">adresse :</p>
+					<p style=" color: white; margin-right: 10px;">Code Postal :</p>
+					<p style=" color: white; margin-right: 10px;">Ville :</p>
+					<p style=" color: white; margin-right: 10px;">Numero :</p>
+					<p style=" color: white; margin-right: 10px;">Mail :</p>
+				</div>
+				<?php 
+				if ($_SESSION['changement'] == 0)
+				{
+				?>
+				<div style="height: 100%; width: 60%; min-width: 250px; border: solid 1px red;">
+					<p style=" color: white; margin-left: 10px;"><?php echo $_SESSION['login'];?></p>
+					<p style=" color: white; margin-left: 10px;"><?php if ($_SESSION['prenom'] != ""){echo $_SESSION['prenom'];} else {echo "Not Completed";}?></p>
+					<p style=" color: white; margin-left: 10px;"><?php if ($_SESSION['nom'] != ""){echo $_SESSION['nom'];} else {echo "Not Completed";}?></p>
+					<p style=" color: white; margin-left: 10px;"><?php if ($_SESSION['adresse'] != ""){echo $_SESSION['adresse'];} else {echo "Not Completed";}?></p>
+					<p style=" color: white; margin-left: 10px;"><?php if ($_SESSION['CP'] != ""){echo $_SESSION['CP'];} else {echo "Not Completed";}?></p>
+					<p style=" color: white; margin-left: 10px;"><?php if ($_SESSION['Ville'] != ""){echo $_SESSION['Ville'];} else {echo "Not Completed";}?></p>
+					<p style=" color: white; margin-left: 10px;"><?php if ($_SESSION['numero'] != ""){echo $_SESSION['numero'];} else {echo "Not Completed";}?></p>
+					<p style=" color: white; margin-left: 10px;"><?php echo $_SESSION['mail'];?></p>
+					<form method="Post" action="../script/script.php">
+						<input type="submit" name="modify" value="Modifier les données">
+					</form>
+				</div>
+				<?php  
+				}
+				else
+				{
+				?>
+				<div style="height: 100%; width: 60%; min-width: 250px; border: solid 1px red;">
+					<form method="Post" action="../script/modify_account.php">
+						<p style=" color: white; margin-left: 10px;"><?php echo $_SESSION['login'];?></p>
+						<p style=" color: white; margin-left: 10px;"><input type="text" name="prenom" placeholder="<?php if ($_SESSION['prenom'] != ""){echo $_SESSION['prenom'];} else {echo "Not Completed";}?>"</p>
+						<p style=" color: white; margin-left: 10px;"><input type="text" name="nom" placeholder="<?php if ($_SESSION['nom'] != ""){echo $_SESSION['nom'];} else {echo "Not Completed";}?>"</p>
+						<p style=" color: white; margin-left: 10px;"><input type="text" name="adresse" placeholder="<?php if ($_SESSION['adresse'] != ""){echo $_SESSION['adresse'];} else {echo "Not Completed";}?>"</p>
+						<p style=" color: white; margin-left: 10px;"><input type="text" name="cp" placeholder="<?php if ($_SESSION['CP'] != ""){echo $_SESSION['CP'];} else {echo "Not Completed";}?>"</p>
+						<p style=" color: white; margin-left: 10px;"><input type="text" name="Ville" placeholder="<?php if ($_SESSION['Ville'] != ""){echo $_SESSION['Ville'];} else {echo "Not Completed";}?>"</p>
+						<p style=" color: white; margin-left: 10px;"><input type="text" name="numero" placeholder="<?php if ($_SESSION['numero'] != ""){echo $_SESSION['numero'];} else {echo "Not Completed";}?>"</p>
+						<p style=" color: white; margin-left: 10px;"><?php echo $_SESSION['mail'];?></p><br />
+							<input type="submit" name="modify" value="Modifier les données">
+					</form>
+				</div>
+				<?php  
+				}
+				?>
 			</div>
 		</div>
 	</div>

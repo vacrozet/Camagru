@@ -120,22 +120,32 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 	if ($prenom != NULL)
 		if (check_alpha($prenom) == false)
 			$_SESSION['erreur_3'] = 1;
+	else
+		$prenom = NULL;
 	if ($nom != NULL)
 		if (check_alpha($nom) == false)
 			$_SESSION['erreur_4'] = 1;
+	else
+		$nom = NULL;
 	if (check_passwd($passwd, $repasswd) == false)
 		$_SESSION['erreur_2'] = 1;
 	if ($numero != NULL)
 		if (check_mobile($numero) == false)
 			$_SESSION['erreur_8'] = 1;
+	else
+		$numero = NULL;
 	if ($cp != NULL)
 		if (check_cp($cp) == false)
 			$_SESSION['erreur_6'] = 1;
+	else
+		$cp = NULL;
 	if (check_mail($mail) == false)
 		$_SESSION['erreur_9'] = 1;
 	if ($ville != NULL)
 		if (check_alpha($ville) == false)
 			$_SESSION['erreur_7'] = 1;
+	else
+		$ville = NULL;
 	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
 		echo "ERROR\n";
 	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."'";
