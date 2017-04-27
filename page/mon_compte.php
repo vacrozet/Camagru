@@ -90,7 +90,7 @@ session_start();
 						<p style=" color: white; margin-left: 10px;"><input type="text" name="Ville" placeholder="<?php if ($_SESSION['Ville'] != ""){echo $_SESSION['Ville'];} else {echo "Not Completed";}?>"</p>
 						<p style=" color: white; margin-left: 10px;"><input type="text" name="numero" placeholder="<?php if ($_SESSION['numero'] != ""){echo $_SESSION['numero'];} else {echo "Not Completed";}?>"</p>
 						<p style=" color: white; margin-left: 10px;"><?php echo $_SESSION['mail'];?></p><br />
-							<input type="submit" name="modify" value="Modifier les données">
+							<input type="submit" name="modify" value="Confirmer les changements">
 					</form>
 				</div>
 				<?php  

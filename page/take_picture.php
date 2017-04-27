@@ -10,30 +10,24 @@ session_start();
 <body>
 	<header class="header">
 		<div class="inheaderborder">
-		<?php  
-			if ($_SESSION['user_name'] == "")
-			{
-		?>
-			<div class="enfant sizeborderleft">
-				<form method="post" action="../script/connexion.php">
-					<input type="Login" name="Login" placeholder="Login"><br /><br />
-					<input type="Password" name="Passwd" placeholder="Password"><br /><br />
-					<input type="submit" name="Connexion" value="Connexion">
-				</form><br />
-				<a class="colorlink" href="./inscription.php">Creation de compte</a></div>
-			<?php  
-			}
-			else
-			{
-			?>
- 			<div class="enfant sizeborderleft">
-	 			<p class="colorlink" style="font-size: 20px;">Login: <?php echo $_SESSION['user_name'];?></p>
-	 			<a class="colorlink" href="./mon_compte.html">ACCEDER A MON COMPTE</a><br /><br />
-	 			<a class="colorlink" href="../script/logout.php">DECONNEXION</a>
- 			</div>
- 			<?php
- 			}
- 			?>
+		<div class="enfant sizeborderleft" style="align-items: center;">
+  				<div style="height: 100%; margin-left: 10px;">
+	 				<a style="height: 100%;" href="../index.php"><img style="" src="../img/web-page-home.png" title=""></a>
+	 			</div>
+	 			<div style="height: 100%;">
+	 				<a style="margin-left: 10px;" href="../script/logout.php"><img src="../img/logout.png"></a>
+		 		</div>
+	 			<?php
+	 			if ($_SESSION['admin'] == "OUI")
+	 			{
+	 			?>
+	 				<div style="height: 100%;">
+		 				<a style="margin-left: 10px;" href="./script/admin.php"><img src="../img/database.png"></a>
+			 		</div>
+	 			<?php	
+	 			}
+	 			?>
+	 		</div>
  		</div>
 		<div class="inheadercenter">
 			<div class="enfant"><U><I><h1>Camagru</h1></I></U></div>

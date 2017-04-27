@@ -1,10 +1,11 @@
 <?php
 session_start();
+require_once('../config/db.php');
 
-function getalluser()
+function getalluser($servername, $username, $mdp, $namedb)
 {
     $array = array();
-    $db = mysqli_connect('localhost', 'root', '', 'camagru');
+    $db = mysqli_connect($servername, $username, $mdp, $namedb);
     $req = mysqli_prepare($db, "SELECT * FROM Utilisateur");
 	if ($req != false)
 	{
@@ -27,7 +28,7 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != "" && $_POST['Connexion'] == "C
 {
 	$login = $_POST['Login'];
 	$passwd = hash('whirlpool', $_POST['Passwd']);
-	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
+	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
 		echo "ERROR\n";
 
 	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."' AND `password` LIKE '".$passwd."' AND `Actif` LIKE 'OUI'";
@@ -35,7 +36,7 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != "" && $_POST['Connexion'] == "C
 	$nb = mysqli_num_rows($result);
 	if ($nb == 1)
 	{
-		$db = getalluser();
+		$db = getalluser($servername, $username, $mdp, $namedb);
 	    foreach ($db as $key => $value)
 	    {
 	    	if ($value['login'] == $login)

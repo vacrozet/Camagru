@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('../config/db.php');
 
 function send_mail($mail, $login)
 {
@@ -146,8 +147,8 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 			$_SESSION['erreur_7'] = 1;
 	else
 		$ville = NULL;
-	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
-		echo "ERROR\n";
+	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
+		echo "ERROR\n";	
 	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."'";
 	$result = mysqli_query($db, $req);
 	$nb = mysqli_num_rows($result);

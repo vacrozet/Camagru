@@ -1,8 +1,6 @@
 <?php 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$db = new mysqli($servername, $username, $password);
+require_once('./config/db.php');
+$db = new mysqli($servername, $username, $mdp);
 if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
 }
@@ -13,7 +11,7 @@ if ($db->query($sql) === TRUE)
 else
     echo "Error creating database: " . $db->error;
 $db->close();
-if (!$db = mysqli_connect($servername, $username, $password, 'camagru'))
+if (!$db = mysqli_connect($servername, $username, $mdp, $namedb))
 	echo "ERROR\n";
 else
 {

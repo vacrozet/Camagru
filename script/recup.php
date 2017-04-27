@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once('../config/db.php');
 
 function send_mail($mail, $login)
 {
@@ -44,10 +45,10 @@ function send_mail($mail, $login)
 	header('Location: ../index.php');
 }
 
-function getalluser()
+function getalluser($servername, $username, $mdp, $namedb)
 {
     $array = array();
-    $db = mysqli_connect('localhost', 'root', '', 'camagru');
+    $db = mysqli_connect($servername, $username, $mdp, $namedb);
     $req = mysqli_prepare($db, "SELECT * FROM Utilisateur");
 	if ($req != false)
 	{
@@ -69,21 +70,21 @@ if ($_POST['mail'] != "" && $_POST['Recup'] == "Reset password")
 {
 	$oui = "NON";
 	$mail = $_POST['mail'];
-	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
+	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
 		echo "ERROR\n";
 	$req = "SELECT * FROM `Utilisateur` WHERE `mail` LIKE '".$mail."'";
 	$result = mysqli_query($db, $req);
 	$nb = mysqli_num_rows($result);
 	if ($nb == 1)
 	{
-	    $db = getalluser();
+	    $db = getalluser($servername, $username, $mdp, $namedb);
 	    foreach ($db as $key => $value)
 	    {
 	    	if ($value['mail'] == $mail)
 	    		 {
 	    		 	$mail = $value['mail'];
 	    		 	$login = $value['login'];
-	    		 	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
+	    		 	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
 						echo "ERROR\n";
 	    		 	$req = "UPDATE `Utilisateur` SET `Actif` = '".$oui."' WHERE `login` = '".$login."'";
 					mysqli_query($db, $req);
