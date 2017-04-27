@@ -9,14 +9,19 @@ session_start();
 </head>
 <body>
 	<header class="header">
-		<div class="inheaderborder enfant">
-			<div class="enfant" ><a class="colorlink" href="../index.php"> REVENIR A LA PAGE <br /> D'ACCEUIL</a></div>
-		</div>
+		<div class="inheaderborder">
+ 			<div class="enfant sizeborderleft" style="align-items: center;">
+ 				<div style="height: 100%; margin-left: 10px;">
+	 				<a style="height: 100%;" href="../index.php"><img style="" src="../img/web-page-home.png" title=""></a>
+	 			</div>
+
+	 		</div>			
+ 		</div>
 		<div class="inheadercenter">
-			<div class="enfant"><U><I><h1>Inscription | Camagru</h1></I></U></div>
+			<div class="enfant"><U><I><h1>Bienvenue sur Camagru</h1></I></U></div>
 		</div>
 		<div class="inheaderborder">
-		</div>		
+		</div>	
 	</header>
 		<div class="page">
 			<div class="enfant">

@@ -29,7 +29,7 @@ session_start();
  			<div class="enfant sizeborderleft">
 	 			<p class="colorlink" style="font-size: 20px;">Login: <?php echo $_SESSION['user_name'];?></p>
 	 			<a class="colorlink" href="./mon_compte.html">ACCEDER A MON COMPTE</a><br /><br />
-	 			<a class="colorlink" href="./logout.php">DECONNEXION</a>
+	 			<a class="colorlink" href="../script/logout.php">DECONNEXION</a>
  			</div>
  			<?php
  			}
@@ -44,8 +44,8 @@ session_start();
 				{
 			?>
 			<div class="enfant">
-				<a href="./take_picture.php">
-					<img class="appareil" src="../img/instagram.png">
+					<a href="./page/take_picture.php">
+					<img  style="max-height: 90px; max-width: 90px;" class="appareil" src="../img/insta.png">
 				</a>
 			</div>
 			<?php 
@@ -54,8 +54,8 @@ session_start();
 				{
 			?>
 			<div class="enfant">
-				<a href="#">
-					<img class="appareil" src="../img/instagram.png">
+					<a href="#">
+					<img  style="max-height: 90px; max-width: 90px;" class="appareil" src="../img/insta.png">
 				</a>
 			</div>
 			<?php 

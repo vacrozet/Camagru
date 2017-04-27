@@ -3,7 +3,7 @@ session_start();
 
 function send_mail($mail, $login)
 {
-	$lien = "http://localhost:8080/camagru/modify_passwd.php";
+	$lien = "http://localhost:8080/camagru/page/reinit_passwd.php";
 	$message_txt = "Salut, si tu recois ce message c'est que tu as t'inscrire a mon super site \"CAMAGRU\"";
 	$message_html = "
 	<html>
@@ -71,7 +71,6 @@ if ($_POST['mail'] != "" && $_POST['Recup'] == "Reset password")
 	$mail = $_POST['mail'];
 	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
 		echo "ERROR\n";
-	
 	$req = "SELECT * FROM `Utilisateur` WHERE `mail` LIKE '".$mail."'";
 	$result = mysqli_query($db, $req);
 	$nb = mysqli_num_rows($result);
@@ -84,7 +83,9 @@ if ($_POST['mail'] != "" && $_POST['Recup'] == "Reset password")
 	    		 {
 	    		 	$mail = $value['mail'];
 	    		 	$login = $value['login'];
-	    		 	$req = "UPDATE `Utilisateur` SET `Actif` = '".$oui."' WHERE `utilisateur`.`login` = '".$login."'";
+	    		 	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
+						echo "ERROR\n";
+	    		 	$req = "UPDATE `Utilisateur` SET `Actif` = '".$oui."' WHERE `login` = '".$login."'";
 					mysqli_query($db, $req);
 	    		 	send_mail($mail, $login);
 	    		 }

@@ -13,7 +13,7 @@ function check_passwd($passwd, $re_passwd)
 
 if ($_POST['Login'] != "" && $_POST['Passwd'] != "" && $_POST['Re-passwd'] != "" && $_POST['submit'] == "Changer mon mot de passe")
 {
-
+	$oui = "OUI";
 	$login = $_POST['Login'];
 	$login = trim($login);
 	$passwd = $_POST['Passwd'];
@@ -24,13 +24,29 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != "" && $_POST['Re-passwd'] != ""
 	$repasswd = hash('whirlpool', $repasswd);
 
 	if (check_passwd($passwd, $repasswd) == false)
-		$_SESSION['erreur_passwd'] = 1;
+		$_SESSION['erreur_2'] = 1;
 	if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
 		echo "ERROR\n";
 	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."' AND `Actif` LIKE 'NON'";
 	$result = mysqli_query($db, $req);
 	$nb = mysqli_num_rows($result);
-	echo $nb;
-	exit();
+	if ($nb == 1 && $_SESSION['erreur_2'] == 0)
+	{
+		if (!($db = mysqli_connect('localhost', 'root', '', 'camagru')))
+			echo "ERROR\n";
+		$req = "UPDATE `Utilisateur` SET `password` = '".$passwd."', `actif` = 'OUI' WHERE `login` = '".$login."'";
+		mysqli_query($db, $req);
+		header('Location: ../index.php');
+	}
+	else
+		header('Location: ../index.php');
+}
+else
+{
+	if ($_POST['lgoin'] == "")
+		$_SESSION['erreur_1'] = 1;
+	if ($_POST['Passwd'] == "" || $_POST['Re-passwd'] == "")
+		$_SESSION['erreur_2'] = 1;
+	header('Location: ../page/modify_passwd.php');
 }
 ?>

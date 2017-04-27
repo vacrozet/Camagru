@@ -3,7 +3,7 @@ session_start();
 
 function send_mail($mail, $login)
 {
-	$lien = "http://localhost:8080/camagru/activ_user.php?login=".$login."";
+	$lien = "http://localhost:8080/camagru/script/activ_user.php?login=".$login."";
 	$message_txt = "Salut, si tu recois ce message c'est que tu as t'inscrire a mon super site \"CAMAGRU\"";
 	$message_html = "
 	<html>

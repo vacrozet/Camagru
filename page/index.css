@@ -1,7 +1,7 @@
 html, body {
 	width: 100%;
 	height: 100%;
-	background: #F8F8FF;
+	background: #658F97;
 	display: flex;
 	flex-direction: column;
 	margin: 0px;
@@ -9,29 +9,37 @@ html, body {
 .header {
 	width: 100%;
 	height: 20%;
-	background: grey;
-	border-radius: 20px;
+	background: #255E69;
 	display: flex;
 	flex-direction: row;
-	min-height: 150px;
-	max-height: 165px;
+	min-height: 80px;
+	max-height: 110px;
 	min-width: 600px;
-	margin-top: 1px;
 	box-shadow: 10px 10px 2em black;
 }
 .inheadercenter {
-	width: 50%;
+	width: 60%;
 	text-align: center;
 	color: white;
 	display: flex;
 }
 .inheaderborder {
-	width: 25%;
+	width: 20%;
 	height: 100%;
 	text-align: center;
 	vertical-align: middle;
 	display: flex;
 }
+.sizeborderleft{
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+}
+.direction{
+	display: flex;
+	flex-direction: column;
+}
+
 .colorlink {
 	color: white;
 	text-decoration: none;
@@ -58,14 +66,15 @@ html, body {
 }
 .divcenter{
 	border: solid 1px red;
-	height: 86%;
+	height: 88%;
 	min-height: 400px;
+	min-width: 600px;
 	overflow: auto;
+	display: flex;
 }
 .bdfooter {
-	border-radius: 20px;
 	height: 3%;
-	background: grey;
+	background: #255E69;
 	margin-bottom: 0px;
 	display: flex;
 	flex-direction: row-reverse;
@@ -196,4 +205,16 @@ html, body {
 .bouton {
 	height: 100%;
 	width: 100%;
+}
+.divcentermoncompte {
+	height: 90%;
+	width: 80%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	overflow: auto;
+	background-color: #0F4752;
+	border-radius: 20px 0 20px 0;
+	box-shadow: 10px 10px 2em black;
 }
