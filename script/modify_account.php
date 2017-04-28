@@ -31,6 +31,7 @@ function check_mobile($numero)
 
 if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
 	echo "ERROR\n";	
+
 if ($_POST['prenom'] != "")
 {
 	$prenom = $_POST['prenom'];
@@ -38,6 +39,7 @@ if ($_POST['prenom'] != "")
 	{
 		$req = "UPDATE `Utilisateur` SET `prenom` = '".$prenom."' WHERE `login` = '".$login."'";
 		mysqli_query($db, $req);
+		$_SESSION['pass_ok'] = 1;
 	}
 	else
 		echo "erreur";
@@ -49,6 +51,7 @@ if ($_POST['nom'] != "")
 	{
 		$req = "UPDATE `Utilisateur` SET `nom` = '".$nom."' WHERE `login` = '".$login."'";
 		mysqli_query($db, $req);
+		$_SESSION['pass_ok'] = 1;
 	}
 	else
 		echo "erreur";
@@ -58,6 +61,7 @@ if ($_POST['adresse'] != "")
 	$adresse = $_POST['adresse'];
 	$req = "UPDATE `Utilisateur` SET `adresse` = '".$adresse."' WHERE `login` = '".$login."'";
 	mysqli_query($db, $req);
+	$_SESSION['pass_ok'] = 1;
 }
 if ($_POST['cp'] != "")
 {
@@ -65,6 +69,7 @@ if ($_POST['cp'] != "")
 	if (check_cp($cp) == true)
 	$req = "UPDATE `Utilisateur` SET `CP` = '".$cp."' WHERE `login` = '".$login."'";
 	mysqli_query($db, $req);
+	$_SESSION['pass_ok'] = 1;
 }
 if ($_POST['Ville'] != "")
 {
@@ -73,6 +78,7 @@ if ($_POST['Ville'] != "")
 	{
 		$req = "UPDATE `Utilisateur` SET `Ville` = '".$ville."' WHERE `login` = '".$login."'";
 		mysqli_query($db, $req);
+		$_SESSION['pass_ok'] = 1;
 	}
 	else
 		echo "erreur";
@@ -84,6 +90,7 @@ if ($_POST['numero'] != "")
 	{
 		$req = "UPDATE `Utilisateur` SET `numero` = '".$numero."' WHERE `login` = '".$login."'";
 		mysqli_query($db, $req);
+		$_SESSION['pass_ok'] = 1;
 	}
 	else
 		echo "erreur";	

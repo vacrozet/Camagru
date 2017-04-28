@@ -215,6 +215,5 @@ html, body {
 	justify-content: flex-start;
 	overflow: auto;
 	background-color: #0F4752;
-	border-radius: 20px 0 20px 0;
-/*	box-shadow: 10px 10px 2em black;
-*/}
+	border-radius: 20px 0 0 20px;
+}

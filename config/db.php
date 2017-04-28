@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$mdp = "root";
+$mdp = "";
 $namedb = "camagru";
 ?>
