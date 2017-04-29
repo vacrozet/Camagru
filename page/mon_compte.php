@@ -72,10 +72,10 @@ session_start();
 						<p style=" color: white; margin-left: 10px;"><?php if ($_SESSION['Ville'] != ""){echo $_SESSION['Ville'];} else {echo "Not Completed";}?></p>
 						<p style=" color: white; margin-left: 10px;"><?php if ($_SESSION['numero'] != ""){echo $_SESSION['numero'];} else {echo "Not Completed";}?></p>
 						<p style=" color: white; margin-left: 10px;"><?php echo $_SESSION['mail'];?></p>
-						<form method="Post" action="../script/script.php">
-							<input type="submit" name="modify" value="Modifier les données">
+						<form method="Post" action="../script/mon_compte.php">
+							<input type="submit" name="modify_1" value="Modifier les données">
 						</form>
-						<?php if ($_SESSION['pass_ok'] == 1) {?><p style="color: red;"><U><I>Changement effectuer</I></U></p><?php } $_SESSION['pass_ok'] = 0;?>
+						<?php if ($_SESSION['modify_ok'] == 1) {?><p style="color: red;"><U><I>Changement effectuer</I></U></p><?php } $_SESSION['modify_ok'] = 0;?>
 					</div>
 					<?php  
 					}
@@ -83,7 +83,7 @@ session_start();
 					{
 					?>
 					<div style="height: 80%; width: 60%; min-width: 250px; min-height: 320px; max-height: 350px;">
-						<form method="Post" action="../script/modify_account.php">
+						<form method="Post" action="../script/mon_compte.php">
 							<p style=" color: white; margin-left: 10px;"><?php echo $_SESSION['login'];?></p>
 							<p style=" color: white; margin-left: 10px;"><input type="text" name="prenom" placeholder="<?php if ($_SESSION['prenom'] != ""){echo $_SESSION['prenom'];} else {echo "Not Completed";}?>"</p>
 							<p style=" color: white; margin-left: 10px;"><input type="text" name="nom" placeholder="<?php if ($_SESSION['nom'] != ""){echo $_SESSION['nom'];} else {echo "Not Completed";}?>"</p>
@@ -102,7 +102,7 @@ session_start();
 				<div style="height: 30%; width: 100%; display: flex; min-height: 200px;">
 					<div style="margin: auto; height: 70%; width: 80%; text-align: center;">
 						<p style="color: white;"><U><I>Changement de mot de passe</I></U></p>
-						<form method="Post" action="../script/modify_passwd_account.php">
+						<form method="Post" action="../script/mon_compte.php">
 							<input <?php if($_SESSION['erreur_pass_2'] == 1){?> style="border: solid 1px red;" <?php } $_SESSION['erreur_pass_2'] = 0;?> type="passwd" name="oldpasswd" placeholder="ancien">
 							<input <?php if($_SESSION['erreur_pass_1'] == 1){?> style="border: solid 1px red;" <?php }?> type="passwd" name="newpasswd" placeholder="Nouveau">					
 							<input <?php if($_SESSION['erreur_pass_1'] == 1){?> style="border: solid 1px red;" <?php } $_SESSION['erreur_pass_1'] = 0; ?>type="passwd" name="re_newpasswd" placeholder="Nouveau">
@@ -114,7 +114,7 @@ session_start();
 				<div style="height: 20%; width: 100%; display: flex; min-height: 125px;">
 					<div style="margin: auto; height: 70%; width: 80%; text-align: center;">
 						<p style="color: white;"><U><I>Suppression de compte</I></U></p>
-						<form method="Post" action="../script/supp_account.php">
+						<form method="Post" action="../script/mon_compte.php">
 							<input type="passwd" name="passwd" placeholder="mot de passe">
 							<input type="submit" name="suppresion"; value="Supprimer le compte">						
 						</form>

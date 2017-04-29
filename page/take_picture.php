@@ -33,30 +33,11 @@ session_start();
 			<div class="enfant"><U><I><h1>Camagru</h1></I></U></div>
 		</div>
 		<div class="inheaderborder">
-			<?php 
-				if ($_SESSION['user_name'] != "")
-				{
-			?>
-			<div class="enfant">
-					<a href="./page/take_picture.php">
-					<img  style="max-height: 90px; max-width: 90px;" class="appareil" src="../img/insta.png">
-				</a>
-			</div>
-			<?php 
-				}
-				else
-				{
-			?>
 			<div class="enfant">
 					<a href="#">
 					<img  style="max-height: 90px; max-width: 90px;" class="appareil" src="../img/insta.png">
 				</a>
 			</div>
-			<?php 
-			}
-			?>
-
-
 		</div>		
 	</header>
 	<div class="divcenter direction">
@@ -94,7 +75,11 @@ session_start();
 						<div style="width: 15%; margin: auto; text-align: center;">Exemple5.png<input type="checkbox" name="Exemple1 text-align: center;"> </div>
 					</div>
 				</div>
-				<div class="cadre"></div>
+				<div class="cadre">
+					<video id="video" width="640" height="480" autoplay></video>
+					<button id="snap">Snap Photo</button>
+					<canvas id="canvas" width="640" height="480"></canvas>
+				</div>
 				<div class="enter"></div>
 			</div>
 		</div>

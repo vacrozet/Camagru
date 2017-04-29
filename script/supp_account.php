@@ -26,7 +26,7 @@ function getalluser($servername, $username, $mdp, $namedb)
 }
 
 
-if ($_POST['passwd'] != "" && $_POST['suppresion'] == "Supprimer le compte")
+if (isset($_POST['passwd']) && isset($_POST['suppresion']))
 {
 	$passwd = $_POST['passwd'];
 	$passwd = hash('whirlpool', $passwd);
@@ -49,10 +49,6 @@ if ($_POST['passwd'] != "" && $_POST['suppresion'] == "Supprimer le compte")
 					header('Location: ../index.php');
 		    	}
 		    }
-	    	else
-	    	{
-	    		echo "erreur";
-	    	}
 	    }
 	}
 }
