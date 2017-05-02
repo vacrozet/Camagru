@@ -95,9 +95,10 @@ html, body {
 	background-color: grey;
 	border-radius: 20px;
 	box-shadow: 10px 10px 2em black;
-	min-width: 500px;
-	min-height: 500px;
-}
+	min-width: 642px;
+	min-height: 690px;
+/*	min-height: 700px;
+*/}
 .parent {
 	display: flex;
 	flex-direction: row;
@@ -112,12 +113,14 @@ html, body {
 	flex-direction: column;
 }
 .cadre {
-	border: solid 1px black;
+	
 	height: 70%;
+	display: flex;
 }
 .enter {
 	border: solid 1px black;
 	height: 10%;
+	display: flex;
 }
 .direction {
 	display: flex;
@@ -142,7 +145,7 @@ html, body {
 	box-shadow: 10px 10px 2em black;
 	display: flex;
 	flex-direction: column;
-	min-height: 500px;
+	min-height: 690px;
 	border-radius: 20px;
 
 }

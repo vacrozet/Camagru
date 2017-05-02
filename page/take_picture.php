@@ -56,8 +56,10 @@ session_start();
 							</div>
 					</div>
 				</div>
-				<div class="defile_photo">
-					
+				<div class="defile_photo" style="display: flex;">
+					<div style="height: 240px; width: 320px; border: solid 1px red;">
+						<canvas id="canvas" width="640" height="480"></canvas>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -75,12 +77,37 @@ session_start();
 						<div style="width: 15%; margin: auto; text-align: center;">Exemple5.png<input type="checkbox" name="Exemple1 text-align: center;"> </div>
 					</div>
 				</div>
-				<div class="cadre">
-					<video id="video" width="640" height="480" autoplay></video>
-					<button id="snap">Snap Photo</button>
-					<canvas id="canvas" width="640" height="480"></canvas>
+				<div class="cadre" style="">
+					<div class="enfant">
+						<video id="video" width="640" height="480" autoplay></video>
+						<button style="border-radius: 100px; text-align: center;" id="snap">Snap Photo</button>
+						<script type="text/javascript">
+							// Grab elements, create settings, etc.
+							var video = document.getElementById('video');
+
+							if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+							    // Not adding `{ audio: true }` since we only want video now
+							    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+							        video.src = window.URL.createObjectURL(stream);
+							        video.play();
+							    });
+							}
+
+							var canvas = document.getElementById('canvas');
+							var context = canvas.getContext('2d');
+							var video = document.getElementById('video');
+
+							// Trigger photo take
+							document.getElementById("snap").addEventListener("click", function() {
+								context.drawImage(video, 0, 0, 320, 240);
+							});
+						</script>
+					</div>
 				</div>
-				<div class="enter"></div>
+				<div class="enter ">
+					<div class="enfant">
+					</div>					
+				</div>
 			</div>
 		</div>
 	</div>
