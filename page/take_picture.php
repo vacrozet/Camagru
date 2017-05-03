@@ -1,5 +1,6 @@
 <?php  
 session_start();
+require_once('../config/db.php');
 ?>
 <!DOCTYPE html>
 <html>
@@ -82,6 +83,49 @@ session_start();
 						<video id="video" width="640" height="480" autoplay></video>
 						<button style="border-radius: 100px; text-align: center;" id="snap">Snap Photo</button>
 						<script type="text/javascript">
+							var xhr = null;
+
+							function getXMLHttpRequest () {
+							  xhr = null;
+
+							  if (window.XMLHttpRequest || window.ActiveXObject) {
+							    if (window.ActiveXObject) {
+							      try {
+							        xhr = new ActiveXObject('Msxml2.XMLHTTP');
+							      } catch (e) {
+							        xhr = new ActiveXObject('Microsoft.XMLHTTP');
+							      }
+							    } else {
+							      xhr = new window.XMLHttpRequest();
+							    }
+							  } else {
+							    console.error('Votre navigateur ne supporte pas l\'objet XMLHTTPRequest...');
+							    return null;
+							  }
+							  return xhr;
+							}
+
+							function request (method, url, variable, cb) {
+							  if (xhr && xhr.readyState !== 0) {
+							    xhr.abort(); // On annule la requête en cours !
+							  }
+
+							  xhr = getXMLHttpRequest();
+
+							  xhr.onreadystatechange = () => {
+							    if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0)) {
+							      if (xhr.responseText) {
+							        cb(xhr.responseText);
+							      }
+							    }
+							  };
+
+							  xhr.open(method, url, true);
+							  if (method === 'POST') {
+							    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+							  }
+							  xhr.send(variable);
+							}
 							// Grab elements, create settings, etc.
 							var video = document.getElementById('video');
 
@@ -99,8 +143,12 @@ session_start();
 
 							// Trigger photo take
 							document.getElementById("snap").addEventListener("click", function() {
-								context.drawImage(video, 0, 0, 320, 240);
+								var image = context.drawImage(video, 0, 0, 320, 240);
+								request('POST', '../script/photo.php', "id=test", (res) => {
+									console.log(res);
+								});
 							});
+
 						</script>
 					</div>
 				</div>
