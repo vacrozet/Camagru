@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$mdp = "";
+$mdp = "root";
 $namedb = "camagru";
 
 ?>

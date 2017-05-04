@@ -47,7 +47,7 @@ $_SESSION['changement'] = 0;
 	 			{
 	 			?>
 	 				<div style="height: 100%;">
-		 				<a style="margin-left: 10px;" href="./script/admin.php"><img src="./img/database.png"></a>
+		 				<a style="margin-left: 10px;" href="./page/admin.php"><img src="./img/database.png"></a>
 			 		</div>
 	 			<?php	
 	 			}

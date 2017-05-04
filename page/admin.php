@@ -14,6 +14,9 @@ session_start();
   				<div style="height: 100%; margin-left: 10px;">
 	 				<a style="height: 100%;" href="../index.php"><img style="" src="../img/web-page-home.png" title=""></a>
 	 			</div>
+	 			<div style="height: 100%; margin-left: 10px;">
+	 				<a style="height: 100%;" href="../page/mon_compte.php"><img src="../img/compte.png"></a>
+	 			</div>
 	 			<div style="height: 100%;">
 	 				<a style="margin-left: 10px;" href="../script/logout.php"><img src="../img/logout.png"></a>
 		 		</div>
@@ -22,7 +25,7 @@ session_start();
 	 			{
 	 			?>
 	 				<div style="height: 100%;">
-		 				<a style="margin-left: 10px;" href="../page/admin.php"><img src="../img/database.png"></a>
+		 				<a style="margin-left: 10px;" href="../script/admin.php"><img src="../img/database.png"></a>
 			 		</div>
 	 			<?php	
 	 			}

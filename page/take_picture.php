@@ -81,79 +81,11 @@ require_once('../config/db.php');
 				<div class="cadre" style="">
 					<div class="enfant">
 						<video id="video" width="640" height="480" autoplay></video>
-						<button style="border-radius: 100px; text-align: center;" id="snap">Snap Photo</button>
-						<script type="text/javascript">
-							var xhr = null;
-
-							function getXMLHttpRequest () {
-							  xhr = null;
-
-							  if (window.XMLHttpRequest || window.ActiveXObject) {
-							    if (window.ActiveXObject) {
-							      try {
-							        xhr = new ActiveXObject('Msxml2.XMLHTTP');
-							      } catch (e) {
-							        xhr = new ActiveXObject('Microsoft.XMLHTTP');
-							      }
-							    } else {
-							      xhr = new window.XMLHttpRequest();
-							    }
-							  } else {
-							    console.error('Votre navigateur ne supporte pas l\'objet XMLHTTPRequest...');
-							    return null;
-							  }
-							  return xhr;
-							}
-
-							function request (method, url, variable, cb) {
-							  if (xhr && xhr.readyState !== 0) {
-							    xhr.abort(); // On annule la requête en cours !
-							  }
-
-							  xhr = getXMLHttpRequest();
-
-							  xhr.onreadystatechange = () => {
-							    if (xhr.readyState === 4 && (xhr.status === 200 || xhr.status === 0)) {
-							      if (xhr.responseText) {
-							        cb(xhr.responseText);
-							      }
-							    }
-							  };
-
-							  xhr.open(method, url, true);
-							  if (method === 'POST') {
-							    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-							  }
-							  xhr.send(variable);
-							}
-							// Grab elements, create settings, etc.
-							var video = document.getElementById('video');
-
-							if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-							    // Not adding `{ audio: true }` since we only want video now
-							    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-							        video.src = window.URL.createObjectURL(stream);
-							        video.play();
-							    });
-							}
-
-							var canvas = document.getElementById('canvas');
-							var context = canvas.getContext('2d');
-							var video = document.getElementById('video');
-
-							// Trigger photo take
-							document.getElementById("snap").addEventListener("click", function() {
-								var image = context.drawImage(video, 0, 0, 320, 240);
-								request('POST', '../script/photo.php', "id=test", (res) => {
-									console.log(res);
-								});
-							});
-
-						</script>
 					</div>
 				</div>
-				<div class="enter ">
+				<div class="enter">
 					<div class="enfant">
+						<button style="border-radius: 100px; text-align: center; height :50px; width: 50px;" id="snap">Snap</button>
 					</div>					
 				</div>
 			</div>
@@ -164,5 +96,6 @@ require_once('../config/db.php');
 		<div class="enfant">@vacrozet 2017 | Camagru</div>
 		</div>
 	</footer>
+	<script language="javascript" src="../js/camera.js"></script>
 </body>
 </html>
