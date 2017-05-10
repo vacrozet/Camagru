@@ -165,9 +165,6 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 			$user->ville = $ville;
 	}
 
-
-
-
 	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
 		echo "ERROR\n";
 

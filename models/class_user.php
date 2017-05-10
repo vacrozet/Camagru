@@ -22,8 +22,8 @@ class User_class
 	{
 		$db = Database::getInstance();
 
-		$stmt = $db->prepare("INSERT INTO `Utilisateur`(`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`, `Actif`, `admin`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-		$result = $stmt->execute($this->index, $this->login, $this->passwd, $this->prenom, $this->nom, $this->adresse, $this->cp, $this->ville, $this->numero, $this->mail, $this->actif, $this->admin);
+		$stmt = $db->prepare("INSERT INTO `Utilisateur`(`login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`, `Actif`, `admin`) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+		$result = $stmt->execute(array($this->login, $this->passwd, $this->prenom, $this->nom, $this->adresse, $this->cp, $this->ville, $this->numero, $this->mail, $this->actif, $this->admin));
 		return ($result);
 	}
 
