@@ -1,34 +1,10 @@
 <?php 
+include_once('./models/user.class.php');
 
-class Personnage
-{
-	public $pseudo;
-	public $nom;
-	public $prenom;
-	public $adresse;
-	public $cp;
-	public $numero;
+$sql = "SELECT * FROM Utilisateur";
 
-	function calcul($arg)
-	{
-		echo $arg;
-		$this->nom = $this->cp;
-		return;
-	}
-}
+$allNews = User_class::getInstance()->request($sql);
 
-$user = new Personnage();
-
-$user->pseudo = "vacrozet";
-$user->nom = "crozet";
-$user->prenom = "valentin";
-$user->adresse = "270, rue des fargets";
-$user->cp = "71570";
-$user->numero = "0637879360";
-
-echo $user->nom;
-echo $user->calcul($user->nom);
-echo $user->nom;
-
+var_dump($allNews);
 
 ?>
