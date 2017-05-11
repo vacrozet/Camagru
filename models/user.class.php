@@ -68,11 +68,14 @@ class Database
 	}
 }
 
-$sql = "UPDATE `Utilisateur` SET `admin`= 'OUI' WHERE `login`= 'vacrozet'";
-
-echo "ok_1";
-
-$allNews = Database::getInstance()->request($sql, false, false);
-
-echo $allNews;
+$login = "vacrzet";
+$mail = "crozet.valentin.42@gmail.cm";
+$sql = "SELECT * FROM Utilisateur";
+$allUser = Database::getInstance()->request($sql);
+foreach ($allUser as $key => $value) {
+	if (($key == "login" && $value == $login) || ($key == "mail" && $value == $mai))
+	{
+		echo "utilisateur existe";
+	}
+}
 ?>

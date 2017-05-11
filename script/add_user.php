@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../config/db.php');
+require_once dirname(__DIR__)."/models/user.class.php";
 
 function send_mail($mail, $login)
 {
@@ -147,32 +147,32 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 			$_SESSION['erreur_7'] = 1;
 	else
 		$ville = NULL;
-	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
-		echo "ERROR\n";	
-	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."'";
-	$result = mysqli_query($db, $req);
-	$nb = mysqli_num_rows($result);
-	$req = "SELECT * FROM `Utilisateur` WHERE `mail` LIKE '".$mail."'";
-	$result = mysqli_query($db, $req);
-	$nb_mail = mysqli_num_rows($result);
-	if ($nb_mail == 1)
-	{
-		$_SESSION['erreur_9'] = 1;
-		$_SESSION['erreur_login'] = 1;
+
+	$sql = "SELECT * FROM Utilisateur";
+	$allNews = Database::getInstance()->request($sql);
+	foreach ($allNews as $key => $value) {
+		if (($key == "login" && $value == $login) || 
+			($key == "mail" && $value == $mai))
+		{
+			$_SESSION['erreur_9'] = 1;
+			$_SESSION['erreur_1'] = 1;
+			$_SESSION['erreur_login'] = 1;
+		}
 	}
-	if ($nb == 1)
-	{
-		$_SESSION['erreur_1'] = 1;
-		$_SESSION['erreur_login'] = 1;
-	}
-	if ($_SESSION['erreur_2'] == 1 || $_SESSION['erreur_3'] == 1 || $_SESSION['erreur_4'] == 1 || $_SESSION['erreur_5'] == 1 || $_SESSION['erreur_6'] == 1 || $_SESSION['erreur_7'] == 1 || $_SESSION['erreur_8'] == 1 || $_SESSION['erreur_9'] == 1 || $_SESSION['erreur_1'] == 1)
+	if ($_SESSION['erreur_2'] == 1 || $_SESSION['erreur_3'] == 1 || 
+		$_SESSION['erreur_4'] == 1 || $_SESSION['erreur_5'] == 1 || 
+		$_SESSION['erreur_6'] == 1 || $_SESSION['erreur_7'] == 1 || 
+		$_SESSION['erreur_8'] == 1 || $_SESSION['erreur_9'] == 1 || 
+		$_SESSION['erreur_1'] == 1)
 		$erreur = 1;
 	if ($erreur == 1)
 		header('Location: ../page/inscription.php');
 	else
 	{
-		$req = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`, `Actif`, `admin`) VALUES (NULL, '".$login."', '".$passwd."', '".$nom."', '".$prenom."', '".$adresse."', '".$cp."', '".$ville."', '".$numero."', '".$mail."', '".$actif."', '".$admin."')";
-		mysqli_query($db, $req);
+
+		$sql = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`, `Actif`, `admin`) VALUES (NULL, '".$login."', '".$passwd."', '".$nom."', '".$prenom."', '".$adresse."', '".$cp."', '".$ville."', '".$numero."', '".$mail."', '".$actif."', '".$admin."')";
+
+		$allNews = Database::getInstance()->request($sql);
 		send_mail($mail, $login);
 	}
 }
