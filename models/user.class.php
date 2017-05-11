@@ -1,6 +1,7 @@
 <?php
-include_once('config.php');
+//include_once("../config/config.php");
 
+echo "ok";
 
 class User_class
 {
@@ -21,7 +22,7 @@ class User_class
 		}
 		catch(PDOException $e)
 		{
-			exit($e->getMessage());
+			 exit($e->getMessage());
 		}
 	}
 	public static function getInstance()
@@ -64,7 +65,19 @@ class User_class
 		}
 		catch(Exception $e)
 		{
-			exit($e->getMessage());
+			// exit($e->getMessage());
 		}
 	}
 }
+
+$sql = "UPDATE `Utilisateur` SET `admin`= 'NON', WHERE `login` = 'vacrozet'";
+
+echo "ok_1";
+
+$allNews = User_class::getInstance()->request($sql, fals, true);
+
+echo "ok";
+var_dump($allNews);
+echo "ok";
+
+?>

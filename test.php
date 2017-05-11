@@ -1,10 +1,14 @@
+#!/usr/bin/php
 <?php 
-include_once('./models/user.class.php');
+include_once("./models/user.class.php");
 
-$sql = "SELECT * FROM Utilisateur";
+$sql = "UPDATE `Utilisateur` SET `admin`= 'NON', WHERE `login` = 'vacrozet'";
 
-$allNews = User_class::getInstance()->request($sql);
+echo "ok_1";
 
-var_dump($allNews);
+$allNews = User_class::getInstance()->request($sql, fals, true);
 
+echo "ok";
+echo $allNews;
+echo "ok";
 ?>
