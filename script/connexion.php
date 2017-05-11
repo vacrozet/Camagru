@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../config/db.php');
+require_once dirname(__DIR__)."/models/user.class.php";
 
 function getalluser($servername, $username, $mdp, $namedb)
 {
@@ -24,14 +24,37 @@ function getalluser($servername, $username, $mdp, $namedb)
 	}
 }
 
-if ($_POST['Login'] != "" && $_POST['Passwd'] != "" && $_POST['Connexion'] == "Connexion")
+if (isset())
+
+
+if (isset($_POST['Login']) && isset($_POST['Passwd']) && isset($_POST['Connexion']))
 {
 	$login = $_POST['Login'];
 	$passwd = hash('whirlpool', $_POST['Passwd']);
-	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
-		echo "ERROR\n";
+	$sql = "SELECT * FROM `Utilisateur` 
+			WHERE `login` LIKE :login 
+			AND `password` LIKE :passwd 
+			AND `Actif` LIKE 'OUI'";
 
-	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."' AND `password` LIKE '".$passwd."' AND `Actif` LIKE 'OUI'";
+		$fields = [
+		'login' => $login,
+		'passwd' => $passwd,
+		'nom' => $nom,
+		'prenom' => $prenom,
+		'cp' => $cp,
+		'ville' => $ville,
+		'numero' => $numero,
+		'mail' => $amil,
+		'actif' => $actif,
+		'admin' => $admin
+		];
+		$allNews = Database::getInstance()->request($sql, $fields, false);
+
+
+
+
+
+
 	$result = mysqli_query($db, $req);
 	$nb = mysqli_num_rows($result);
 	if ($nb == 1)
@@ -52,5 +75,8 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != "" && $_POST['Connexion'] == "C
 	}
 }
 else
+{
+		echo "ERREUR";
 	    header('Location: ../index.php');
+}
 ?>

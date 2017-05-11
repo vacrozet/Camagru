@@ -67,15 +67,4 @@ class Database
 		}
 	}
 }
-
-$login = "vacrzet";
-$mail = "crozet.valentin.42@gmail.cm";
-$sql = "SELECT * FROM Utilisateur";
-$allUser = Database::getInstance()->request($sql);
-foreach ($allUser as $key => $value) {
-	if (($key == "login" && $value == $login) || ($key == "mail" && $value == $mai))
-	{
-		echo "utilisateur existe";
-	}
-}
 ?>
