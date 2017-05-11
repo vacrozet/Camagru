@@ -9,4 +9,4 @@ if (!defined("BDD_USER"))
 	define("BDD_USER", "root");
 
 if (!defined("BDD_PASSWORD"))
-	define("BDD_PASSWORD", "");
+	define("BDD_PASSWORD", "root");

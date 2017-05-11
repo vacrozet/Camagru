@@ -1,9 +1,9 @@
 <?php
-//include_once("../config/config.php");
+include_once('location: ../config/config.php');
 
 echo "ok";
 
-class User_class
+class Database
 {
 	private $_PDOInstance;
 	private static $_instance = null;
@@ -17,7 +17,7 @@ class User_class
 				PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 				PDO::ATTR_EMULATE_PREPARES => false
-			]
+			];
 			$this->_PDOInstance = new PDO('mysql:host='.BDD_HOST.';dbname='.BDD_DATABASE, BDD_USER, BDD_PASSWORD, $options);
 		}
 		catch(PDOException $e)
@@ -28,7 +28,7 @@ class User_class
 	public static function getInstance()
 	{
 		if (is_null(self::$_instance))
-			self::$_instance = new Databse();
+			self::$_instance = new Database();
 		return self::$_instance;
 	}
 
@@ -65,7 +65,7 @@ class User_class
 		}
 		catch(Exception $e)
 		{
-			// exit($e->getMessage());
+			exit($e->getMessage());
 		}
 	}
 }
@@ -74,7 +74,7 @@ $sql = "UPDATE `Utilisateur` SET `admin`= 'NON', WHERE `login` = 'vacrozet'";
 
 echo "ok_1";
 
-$allNews = User_class::getInstance()->request($sql, fals, true);
+$allNews = Database::getInstance()->request($sql, fals, true);
 
 echo "ok";
 var_dump($allNews);
