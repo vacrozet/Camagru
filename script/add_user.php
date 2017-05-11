@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once dirname(__DIR__)."/config/config.php";
+require_once('../config/db.php');
 
 function send_mail($mail, $login)
 {
@@ -116,59 +116,39 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 	$numero = trim($numero);
 	$mail = $_POST['Mail'];
 	$mail = trim($mail);
-	$user->actif = "NON";
-	$user->admin = "NON";
 	$actif = "NON";
 	$admin = "NON";
 	if ($prenom != NULL)
-	{
 		if (check_alpha($prenom) == false)
 			$_SESSION['erreur_3'] = 1;
-		else
-			$user->prenom = $prenom;
-	}
+	else
+		$prenom = NULL;
 	if ($nom != NULL)
-	{
 		if (check_alpha($nom) == false)
 			$_SESSION['erreur_4'] = 1;
-		else
-			$user->nom = $nom;
-	}
+	else
+		$nom = NULL;
 	if (check_passwd($passwd, $repasswd) == false)
 		$_SESSION['erreur_2'] = 1;
-	else
-		$user->passwd = $passwd;
 	if ($numero != NULL)
-	{
 		if (check_mobile($numero) == false)
 			$_SESSION['erreur_8'] = 1;
-		else
-			$user->numero = $numero;
-	}
+	else
+		$numero = NULL;
 	if ($cp != NULL)
-	{
 		if (check_cp($cp) == false)
 			$_SESSION['erreur_6'] = 1;
-		else
-			$user->cp = $cp;
-	}
+	else
+		$cp = NULL;
 	if (check_mail($mail) == false)
 		$_SESSION['erreur_9'] = 1;
-	else
-		$user->mail = $mail;
 	if ($ville != NULL)
-	{
 		if (check_alpha($ville) == false)
 			$_SESSION['erreur_7'] = 1;
-		else
-			$user->ville = $ville;
-	}
-
+	else
+		$ville = NULL;
 	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
-		echo "ERROR\n";
-
-
-
+		echo "ERROR\n";	
 	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."'";
 	$result = mysqli_query($db, $req);
 	$nb = mysqli_num_rows($result);
@@ -191,11 +171,9 @@ if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != 
 		header('Location: ../page/inscription.php');
 	else
 	{
-		$user->add_user();
-
-		// $req = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`, `Actif`, `admin`) VALUES (NULL, '".$login."', '".$passwd."', '".$nom."', '".$prenom."', '".$adresse."', '".$cp."', '".$ville."', '".$numero."', '".$mail."', '".$actif."', '".$admin."')";
-		// mysqli_query($db, $req);
-		// send_mail($mail, $login);
+		$req = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`, `Actif`, `admin`) VALUES (NULL, '".$login."', '".$passwd."', '".$nom."', '".$prenom."', '".$adresse."', '".$cp."', '".$ville."', '".$numero."', '".$mail."', '".$actif."', '".$admin."')";
+		mysqli_query($db, $req);
+		send_mail($mail, $login);
 	}
 }
 else
