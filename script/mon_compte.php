@@ -1,6 +1,6 @@
 <?php  
 session_start();
-require_once('../config/db.php');
+require_once dirname(__DIR__)."/models/user.class.php";
 $login = $_SESSION['user_name'];
 
 function check_alpha($alpha)
@@ -27,28 +27,6 @@ function check_mobile($numero)
 		return true;
 	else
 		return false;
-}
-
-function getalluser($servername, $username, $mdp, $namedb)
-{
-    $array = array();
-    $db = mysqli_connect($servername, $username, $mdp, $namedb);
-    $req = mysqli_prepare($db, "SELECT * FROM Utilisateur");
-	if ($req != false)
-	{
-		mysqli_stmt_execute($req);
-        $result = mysqli_stmt_get_result($req);
-        while ($data = mysqli_fetch_assoc($result)) {
-			$array[] = $data;
-        }
-		mysqli_close($db);
-		return $array;
-	}
-	else
-	{
-		mysqli_close($db);
-		return null;
-	}
 }
 
 function check_passwd($passwd, $re_passwd)
@@ -80,37 +58,31 @@ if (isset($_POST['oldpasswd']) && isset($_POST['newpasswd']) && isset($_POST['re
 		$_SESSION['erreur_pass_1'] = 1;
 		header('Location: ../page/mon_compte.php');
 	}
-	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
-		echo "ERROR\n";	
-	$db = getalluser($servername, $username, $mdp, $namedb);
-    foreach ($db as $key => $value)
+
+	$sql = "SELECT * FROM Utilisateur WHERE login LIKE '".$login."'";
+
+	$allUser = Database::getInstance()->request($sql);
+	foreach ($allUser as $key => $value)
 	{
-		if ($value['login'] == $login)
+		if ($key == "password" && $value == $oldpasswd)
 		{
-			if ($value['password'] == $oldpasswd)
-			{
-    			if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
-					echo "ERROR\n";
-    			$req = "UPDATE `Utilisateur` SET `password` = '".$newpasswd."' WHERE `login` = '".$login."'";
-	    		mysqli_query($db, $req);
-	    		$_SESSION['pass_ok'] = 1;
-		    }
-	    	else
-	    		$_SESSION['erreur_pass_2'] = 1;
-	    }
+			$sql = "UPDATE `Utilisateur` SET `password` = :passwd WHERE `login` = :login";
+			$fields = ['passwd' => $newpasswd, 'login' => $login];
+			$allUser = Database::getInstance()->request($sql, $fields, false);
+			$_SESSION['pass_ok'] = 1;
+			$_SESSION['modify_ok'] = 1;
+		}
 	}
 }
-
-if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
-	echo "ERROR\n";	
 
 if ($_POST['prenom'] != "")
 {
 	$prenom = $_POST['prenom'];
 	if (check_alpha($prenom) == true)
 	{
-		$req = "UPDATE `Utilisateur` SET `prenom` = '".$prenom."' WHERE `login` = '".$login."'";
-		mysqli_query($db, $req);
+		$sql = "UPDATE `Utilisateur` SET `prenom` = :prenom WHERE `login` = :login";
+		$fields = ['prenom' => $prenom, 'login' => $login];
+		$allUser = Database::getInstance()->request($sql, $fields, false);
 		$_SESSION['modify_ok'] = 1;
 	}
 }
@@ -120,18 +92,20 @@ if ($_POST['nom'] != "")
 	$nom = $_POST['nom'];
 	if (check_alpha($nom) == true)
 	{
-		$req = "UPDATE `Utilisateur` SET `nom` = '".$nom."' WHERE `login` = '".$login."'";
-		mysqli_query($db, $req);
+		$sql = "UPDATE `Utilisateur` SET `nom` = :nom WHERE `login` = :login";
+		$fields = ['nom' => $nom, 'login' => $login];
+		$allUser = Database::getInstance()->request($sql, $fields, false);
 		$_SESSION['modify_ok'] = 1;
 	}
 }
 
 if ($_POST['adresse'] != "")
 {
-	$adresse = $_POST['adresse'];
-	$req = "UPDATE `Utilisateur` SET `adresse` = '".$adresse."' WHERE `login` = '".$login."'";
-	mysqli_query($db, $req);
-	$_SESSION['modify_ok'] = 1;
+		$adresse = $_POST['adresse'];
+		$sql = "UPDATE `Utilisateur` SET `adresse` = :adresse WHERE `login` = :login";
+		$fields = ['adresse' => $adresse, 'login' => $login];
+		$allUser = Database::getInstance()->request($sql, $fields, false);
+		$_SESSION['modify_ok'] = 1;
 }
 
 if ($_POST['cp'] != "")
@@ -139,8 +113,9 @@ if ($_POST['cp'] != "")
 	$cp = $_POST['cp'];
 	if (check_cp($cp) == true)
 	{
-		$req = "UPDATE `Utilisateur` SET `CP` = '".$cp."' WHERE `login` = '".$login."'";
-		mysqli_query($db, $req);
+		$sql = "UPDATE `Utilisateur` SET `CP` = :cp WHERE `login` = :login";
+		$fields = ['cp' => $cp, 'login' => $login];
+		$allUser = Database::getInstance()->request($sql, $fields, false);
 		$_SESSION['modify_ok'] = 1;
 	}
 }
@@ -150,8 +125,9 @@ if ($_POST['Ville'] != "")
 	$ville = $_POST['Ville'];
 	if (check_alpha($ville) == true)
 	{
-		$req = "UPDATE `Utilisateur` SET `Ville` = '".$ville."' WHERE `login` = '".$login."'";
-		mysqli_query($db, $req);
+		$sql = "UPDATE `Utilisateur` SET `Ville` = :Ville WHERE `login` = :login";
+		$fields = ['Ville' => $ville, 'login' => $login];
+		$allUser = Database::getInstance()->request($sql, $fields, false);
 		$_SESSION['modify_ok'] = 1;
 	}
 }
@@ -161,27 +137,38 @@ if ($_POST['numero'] != "")
 	$numero = trim($_POST['numero']);
 	if (check_mobile($numero) == true)
 	{
-		$req = "UPDATE `Utilisateur` SET `numero` = '".$numero."' WHERE `login` = '".$login."'";
-		mysqli_query($db, $req);
+		$sql = "UPDATE `Utilisateur` SET `numero` = :numero WHERE `login` = :login";
+		$fields = ['numero' => $numero, 'login' => $login];
+		$allUser = Database::getInstance()->request($sql, $fields, false);
 		$_SESSION['modify_ok'] = 1;
 	}
 }
-
 if (isset($_POST['modify']))
 	$_SESSION['changement'] = 0;
-$db = getalluser($servername, $username, $mdp, $namedb);
-foreach ($db as $key => $value)
-    {
-    	if ($value['login'] == $login)
-    		 {	$_SESSION['login'] = $value['login'];
-    		 	$_SESSION['nom'] = $value['nom'];
-    		 	$_SESSION['prenom'] = $value['prenom'];
-    		 	$_SESSION['adresse'] = $value['adresse'];
-    		 	$_SESSION['CP'] = $value['CP'];
-    		 	$_SESSION['Ville'] = $value['Ville'];
-    		 	$_SESSION['numero'] = $value['numero'];
-    		 	$_SESSION['mail'] = $value['mail'];
-    		 }
-    }
+
+
+
+$sql = "SELECT * FROM Utilisateur WHERE login LIKE '".$login."'";
+
+$allUser = Database::getInstance()->request($sql, false, false);
+foreach ($allUser as $key => $value)
+{
+	if ($key == "login")
+		$_SESSION['login'] = $value;
+	if ($key == "nom")
+		$_SESSION['nom'] = $value;
+	if ($key == "prenom")
+		$_SESSION['prenom'] = $value;
+	if ($key == "adresse")
+		$_SESSION['adresse'] = $value;
+	if ($key == "CP")
+		$_SESSION['CP'] = $value;
+	if ($key == "Ville")
+		$_SESSION['Ville'] = $value;
+	if ($key == "numero")
+		$_SESSION['numero'] = $value;
+	if ($key == "mail")	
+		$_SESSION['mail'] = $value;
+}
 header('Location: ../page/mon_compte.php');
 ?>
