@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../config/db.php');
+require_once dirname(__DIR__)."/config/config.php";
 
 function send_mail($mail, $login)
 {
@@ -91,7 +91,6 @@ function check_alpha($alpha)
 
 if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != NULL && $_POST['Mail'] != "" && $_POST['condition'] == "ok" && $_POST['inscription'] == "Inscription")
  {
- 	$user = new User_class();
  	$erreur = 0;
 	$login = $_POST['Login'];
 	$login = trim($login);

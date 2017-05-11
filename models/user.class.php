@@ -1,7 +1,5 @@
 <?php
-include_once('location: ../config/config.php');
-
-echo "ok";
+require_once dirname(__DIR__)."/config/config.php";
 
 class Database
 {
@@ -70,14 +68,11 @@ class Database
 	}
 }
 
-$sql = "UPDATE `Utilisateur` SET `admin`= 'NON', WHERE `login` = 'vacrozet'";
+$sql = "UPDATE `Utilisateur` SET `admin`= 'OUI' WHERE `login`= 'vacrozet'";
 
 echo "ok_1";
 
-$allNews = Database::getInstance()->request($sql, fals, true);
+$allNews = Database::getInstance()->request($sql, false, false);
 
-echo "ok";
-var_dump($allNews);
-echo "ok";
-
+echo $allNews;
 ?>
