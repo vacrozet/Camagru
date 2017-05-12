@@ -16,8 +16,8 @@ class Database
 				PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 				PDO::ATTR_EMULATE_PREPARES => false
 			];
-			$this->_PDOInstance = new PDO('mysql:host=127.0.0.1;port=8889;dbname='.BDD_DATABASE, BDD_USER, BDD_PASSWORD);
-			// $this->_PDOInstance = new PDO('mysql:host='.BDD_HOST.';dbname='.BDD_DATABASE, BDD_USER, BDD_PASSWORD, $options);
+			// $this->_PDOInstance = new PDO('mysql:host=127.0.0.1;port=8889;dbname='.BDD_DATABASE, BDD_USER, BDD_PASSWORD);
+			$this->_PDOInstance = new PDO('mysql:host='.BDD_HOST.';dbname='.BDD_DATABASE, BDD_USER, BDD_PASSWORD, $options);
 		}
 		catch(PDOException $e)
 		{

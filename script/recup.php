@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../config/db.php');
+require_once dirname(__DIR__)."/models/user.class.php";
 
 function send_mail($mail, $login)
 {
@@ -66,10 +66,14 @@ function getalluser($servername, $username, $mdp, $namedb)
 		return null;
 	}
 }
-if ($_POST['mail'] != "" && $_POST['Recup'] == "Reset password")
+if (!empty($_POST['mail']) && isset($_POST['Recup']))
 {
-	$oui = "NON";
+	$actif = "NON";
 	$mail = $_POST['mail'];
+
+
+
+
 	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
 		echo "ERROR\n";
 	$req = "SELECT * FROM `Utilisateur` WHERE `mail` LIKE '".$mail."'";
@@ -86,7 +90,7 @@ if ($_POST['mail'] != "" && $_POST['Recup'] == "Reset password")
 	    		 	$login = $value['login'];
 	    		 	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
 						echo "ERROR\n";
-	    		 	$req = "UPDATE `Utilisateur` SET `Actif` = '".$oui."' WHERE `login` = '".$login."'";
+	    		 	$req = "UPDATE `Utilisateur` SET `Actif` = '".$actif."' WHERE `login` = '".$login."'";
 					mysqli_query($db, $req);
 	    		 	send_mail($mail, $login);
 	    		 }

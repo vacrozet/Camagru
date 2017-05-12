@@ -70,7 +70,6 @@ if (isset($_POST['oldpasswd']) && isset($_POST['newpasswd']) && isset($_POST['re
 			$fields = ['passwd' => $newpasswd, 'login' => $login];
 			$allUser = Database::getInstance()->request($sql, $fields, false);
 			$_SESSION['pass_ok'] = 1;
-			$_SESSION['modify_ok'] = 1;
 		}
 	}
 }
@@ -145,8 +144,6 @@ if ($_POST['numero'] != "")
 }
 if (isset($_POST['modify']))
 	$_SESSION['changement'] = 0;
-
-
 
 $sql = "SELECT * FROM Utilisateur WHERE login LIKE '".$login."'";
 

@@ -26,19 +26,20 @@ session_start();
 		<div class="page">
 			<div class="enfant">
 				<form method="Post" action="../script/add_user.php"><br />
-					<input style="text-align: center;<?php if($_SESSION['erreur_1'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_1'] = 0; ?>" type="Login"    name="Login"     placeholder="Login*"><br /><br />
-					<input style="text-align: center;<?php if($_SESSION['erreur_2'] == 1){?>border: solid 1px red; <?php }?>" type="Password" name="Passwd"    placeholder="Password*"><br /><br />
-					<input style="text-align: center;<?php if($_SESSION['erreur_2'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_2'] = 0; ?>" type="Password" name="Re-passwd" placeholder="Re-Password*"><br /><br />
-					<input style="text-align: center;<?php if($_SESSION['erreur_3'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_3'] = 0; ?>" type="Prenom"   name="Prenom"    placeholder="Prenom"><br /><br />
-					<input style="text-align: center;<?php if($_SESSION['erreur_4'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_4'] = 0; ?>" type="Nom"      name="Nom"       placeholder="Nom"><br /><br />
-					<input style="text-align: center;<?php if($_SESSION['erreur_5'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_5'] = 0; ?>" type="Adresse"  name="Adresse"   placeholder="Adresse"><br /><br />
-					<input style="text-align: center;<?php if($_SESSION['erreur_6'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_6'] = 0; ?>" type="cp"       name="cp"        placeholder="cp"><br /><br />
-					<input style="text-align: center;<?php if($_SESSION['erreur_7'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_7'] = 0; ?>" type="Ville"    name="Ville"     placeholder="Ville"><br /><br />
-					<input style="text-align: center;<?php if($_SESSION['erreur_8'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_8'] = 0; ?>" type="Numero"   name="Numero"    placeholder="Numero"><br /><br />
-					<input style="text-align: center;<?php if($_SESSION['erreur_9'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_9'] = 0; ?>" type="Mail"     name="Mail"      placeholder="Mail*"><br /><br />
-					<input type="checkbox" name="condition" Value="ok"><span <?php if ($_SESSION['erreur_10'] == 1){ ?> style="color: red;"<?php } $_SESSION['erreur_10'] = 0;?>> J'accepte les conditions generale d'utilisation*</span><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur'] == 1 || $_SESSION['erreur'] == 11 ){?>border: solid 1px red; <?php }?>" type="Login"    name="Login"     placeholder="Login*"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur'] == 2){?>border: solid 1px red; <?php }?>" type="Password" name="Passwd"    placeholder="Password*"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur'] == 2){?>border: solid 1px red; <?php }?>" type="Password" name="Re-passwd" placeholder="Re-Password*"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur'] == 3){?>border: solid 1px red; <?php }?>" type="Prenom"   name="Prenom"    placeholder="Prenom"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur'] == 4){?>border: solid 1px red; <?php }?>" type="Nom"      name="Nom"       placeholder="Nom"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur'] == 5){?>border: solid 1px red; <?php }?>" type="Adresse"  name="Adresse"   placeholder="Adresse"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur'] == 6){?>border: solid 1px red; <?php }?>" type="cp"       name="cp"        placeholder="cp"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur'] == 7){?>border: solid 1px red; <?php }?>" type="Ville"    name="Ville"     placeholder="Ville"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur'] == 8){?>border: solid 1px red; <?php }?>" type="Numero"   name="Numero"    placeholder="Numero"><br /><br />
+					<input style="text-align: center;<?php if($_SESSION['erreur'] == 9){?>border: solid 1px red; <?php }?>" type="Mail"     name="Mail"      placeholder="Mail*"><br /><br />
+					<input type="checkbox" name="condition" Value="ok"><span <?php if ($_SESSION['erreur'] == 10){ ?> style="color: red;"<?php }?>> J'accepte les conditions generale d'utilisation*</span><br />
 					<input type="submit" name="inscription" value="Inscription">
-					<?php if ($_SESSION['erreur_login'] == 1){?> <p style="color: red;">Un compte est déjà créer</p><?php $_SESSION['erreur_login'] = 0; }?>
+					<?php if ($_SESSION['erreur'] == 11){?> <p style="color: red;">Un compte est déjà créer</p><?php }?>
+					<?php if ($_SESSION['erreur'] == 12){?> <p style="color: red;">Compte Créer !!</p><?php $_SESSION['erreur'] = 0; }?>
 				</form><br />
 			</div>
  		</div>

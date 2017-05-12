@@ -2,13 +2,6 @@
 session_start();
 require_once dirname(__DIR__)."/models/user.class.php";
 
-
-function erreur_prog($number)
-{
-	exit();
-}
-
-
 function send_mail($mail, $login)
 {
 	$lien = "http://localhost:8080/camagru/script/activ_user.php?login=".$login."";
@@ -49,51 +42,59 @@ function send_mail($mail, $login)
 	$message.= PHP_EOL."--".$boundary_alt."--".PHP_EOL;
 	$message.= PHP_EOL."--".$boundary.PHP_EOL;
 	mail($mail,$sujet,$message,$header);
-	header('Location: ../index.php');
+}
+
+function erreur_prog($number)
+{
+	$_SESSION['erreur'] = $number;
+	header('Location: ./page/inscription.php');
+	exit();
 }
 
 function check_passwd($passwd, $re_passwd)
 {
 	$passwd = hash('whirlpool', $passwd);
 	$re_passwd = hash('whirlpool', $re_passwd);
-	if (strcmp($passwd, $re_passwd) == 0)
-		return true;
-	else
-		return false;
+	if (strcmp($passwd, $re_passwd) != 0)
+		erreur_prog(2);
+	return $passwd;
 }
 
 function check_mobile($numero)
 {
+	if (empty($numero))
+		return NULL;
 	if ($numero[0] != "0")
-		return false;
-	if (preg_match('#^[0-9]{10,10}$#', $numero) == 1)
-		return true;
-	else
-		return false;
+		erreur_prog(8);
+	if (!preg_match('#^[0-9]{10,10}$#', $numero) == 1)
+		erreur_prog(8);
+	return $numero;
 }
 
 function check_cp($cp)
 {
-	if (preg_match('#[0-9]{5}#', $cp))
-		return true;
-	else
-		return false;
+	if (empty($cp))
+		return NULL;
+	if (!preg_match('#[0-9]{5}#', $cp))
+		erreur_prog(6);
 }
 
 function check_mail($mail)
 {
-	if (preg_match('#^[a-z0-9._-]+@(gmail|hotmail|me).[a-z]{2,4}$#', $mail) == 1)
-		return true;
-	else
-		return false;
+	if (empty($numero))
+		erreur_prog(9);
+	if (!preg_match('#^[a-z0-9._-]+@(gmail|hotmail|me).[a-z]{2,4}$#', $mail) == 1)
+		erreur_prog(9);
+	return $mail;
 }
 
-function check_alpha($alpha)
+function check_alpha($alpha, $number)
 {
-	if (preg_match('#^[a-zA-Zéèêëàâîïôöûü-]+$#', $alpha))
-		return true;
-	else
-		return false;
+	if (empty($alpha))
+		return NULL;
+	if (!preg_match('#^[a-zA-Zéèêëàâîïôöûü-]+$#', $alpha))
+		erreur_prog($number);
+	return $alpha;
 }
 
 function check_exist($login, $mail)
@@ -103,136 +104,42 @@ function check_exist($login, $mail)
 	foreach ($allNews as $key => $value) {
 		if (($key == "login" && $value == $login) || 
 			($key == "mail" && $value == $mai))
-		{
-			$_SESSION['erreur_9'] = 1;
-			$_SESSION['erreur_1'] = 1;
-			$_SESSION['erreur_login'] = 1;
-		}
+			erreur_prog(11);
 	}
 }
 
+if (!empty($_POST['Login']) && !empty($_POST['Passwd']) && 
+	!empty($_POST['Re-passwd']) && !empty($_POST['Mail']) && 
+	!empty($_POST['condition']) && !empty($_POST['inscription']))
+{
+	$login = trim($_POST['Login']);
+	$passwd = check_passwd($_POST['Passwd'], $_POST['Re-passwd']);
+	$prenom = check_alpha(trim($_POST['Prenom']), 3);
+	$nom = check_alpha(trim($_POST['Nom']), 4);
+	$numero = check_mobile(trim($_POST['Numero']);
+	$cp = check_cp(trim($_POST['cp']);
+	$ville = check_alpha(trim($_POST['Ville']), 7);
+	$mail = check_mail($_POST['Mail']);
+	check_exist($login, $mail);
 
-if ($_POST['Login'] != "" && $_POST['Passwd'] != NULL && $_POST['Re-passwd'] != NULL && $_POST['Mail'] != "" && $_POST['condition'] == "ok" && $_POST['inscription'] == "Inscription")
- {
-	erreur_prog(3);
- 	$erreur = 0;
-	$login = $_POST['Login'];
-	$login = trim($login);
-	$passwd = $_POST['Passwd'];
-	$repasswd = $_POST['Re-passwd'];
-	$passwd = trim($passwd);
-	$repasswd = trim($repasswd);
-	$passwd = hash('whirlpool', $passwd);
-	$repasswd = hash('whirlpool', $repasswd);
-	$prenom = $_POST['Prenom'];
-	$prenom = trim($prenom);
-	$nom = $_POST['Nom'];
-	$nom = trim($nom);
-	$adresse = $_POST['Adresse'];
-	$adresse = trim($adresse);
-	$prenom = $_POST['Prenom'];
-	$prenom = trim($prenom);
-	$cp = $_POST['cp'];
-	$cp = trim($cp);
-	$ville = $_POST['Ville'];
-	$ville = trim($ville);
-	$numero = $_POST['Numero'];
-	$numero = trim($numero);
-	$mail = $_POST['Mail'];
-	$mail = trim($mail);
-	$actif = "NON";
-	$admin = "NON";
-	
+	$sql = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`, `Actif`, `admin`) 
+			VALUES (NULL, :login, :passwd, :nom, :prenom, :adresse, :cp, :ville, :numero, :mail, 'NON', 'NON')";
 
-
-
-	if ($prenom != NULL)
-		if (check_alpha($prenom) == false)
-			$_SESSION['erreur_3'] = 1;
-	else
-		$prenom = NULL;
-
-
-
-
-
-	if ($nom != NULL)
-		if (check_alpha($nom) == false)
-			$_SESSION['erreur_4'] = 1;
-	else
-		$nom = NULL;
-
-	if (check_passwd($passwd, $repasswd) == false)
-		$_SESSION['erreur_2'] = 1;
-
-	if ($numero != NULL)
-		if (check_mobile($numero) == false)
-			$_SESSION['erreur_8'] = 1;
-	else
-		$numero = NULL;
-	
-
-	if ($cp != NULL)
-		if (check_cp($cp) == false)
-			$_SESSION['erreur_6'] = 1;
-	else
-		$cp = NULL;
-	
-
-
-	if (check_mail($mail) == false)
-		$_SESSION['erreur_9'] = 1;
-	
-
-
-	if ($ville != NULL)
-		if (check_alpha($ville) == false)
-			$_SESSION['erreur_7'] = 1;
-	else
-		$ville = NULL;
-
-	check_exist($login, $mail)
-
-	if ($_SESSION['erreur_2'] == 1 || $_SESSION['erreur_3'] == 1 || 
-		$_SESSION['erreur_4'] == 1 || $_SESSION['erreur_5'] == 1 || 
-		$_SESSION['erreur_6'] == 1 || $_SESSION['erreur_7'] == 1 || 
-		$_SESSION['erreur_8'] == 1 || $_SESSION['erreur_9'] == 1 || 
-		$_SESSION['erreur_1'] == 1 )
-		header('Location: ../page/inscription.php');
-	else
-	{
-
-		$sql = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `nom`, `prenom`, `adresse`, `CP`, `Ville`, `numero`, `mail`, `Actif`, `admin`) 
-				VALUES (NULL, :login, :passwd, :nom, :prenom, :adresse, :cp, :ville, :numero, :mail, :actif, :admin";
-
-		$fields = [
-		'login' => $login,
-		'passwd' => $passwd,
-		'nom' => $nom,
-		'prenom' => $prenom,
-		'cp' => $cp,
-		'ville' => $ville,
-		'numero' => $numero,
-		'mail' => $amil,
-		'actif' => $actif,
-		'admin' => $admin
-		];
-		$allNews = Database::getInstance()->request($sql, $fields, false);
-		send_mail($mail, $login);
-	}
+	$fields = [	'login' => $login,
+				'passwd' => $passwd,
+				'nom' => $nom,
+				'prenom' => $prenom,
+				'adresse' => $adresse,
+				'cp' => $cp,
+				'ville' => $ville,
+				'numero' => $numero,
+				'mail' => $mail
+				];
+	$allNews = Database::getInstance()->request($sql, $fields, false);
+	send_mail($mail, $login);
+	$_SESSION['erreur'] = 12;
 }
 else
-{
-	if ($_POST['Login'] == "")
-		$_SESSION['erreur_1'] = 1;	
-	if ($_POST['Passwd'] == "")
-		$_SESSION['erreur_2'] = 1;
-	if ($_POST['Re-passwd'] == "")
-		$_SESSION['erreur_2'] = 1;
-	if ($_POST['Mail'] == "")
-		$_SESSION['erreur_9'] = 1;
-	if ($_POST['condition'] != "ok")
-		$_SESSION['erreur_10'] = 1;
-	header('Location: ../page/inscription.php');
-}
+	$_SESSION['erreur'] = 1;
+header('Location: ../page/inscription.php');
 ?>
