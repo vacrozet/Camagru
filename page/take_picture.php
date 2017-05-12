@@ -1,12 +1,14 @@
 <?php  
 session_start();
-require_once('../config/db.php');
+// require_once dirname(__DIR__)."/models/user.class.php";
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Camagru</title>
 	<link rel="stylesheet" type="text/css" href="./index.css">
+	<link rel="shortcut icon" href="../img/instagram-draw-logo.png">
+
 </head>
 <body>
 	<header class="header">
@@ -59,7 +61,7 @@ require_once('../config/db.php');
 				</div>
 				<div class="defile_photo" style="display: flex;">
 					<div style="height: 240px; width: 320px; border: solid 1px red;">
-						<canvas id="canvas" width="640" height="480"></canvas>
+						<canvas id="canvas" style="width: 100%; height: 100%;"></canvas>
 					</div>
 				</div>
 			</div>
@@ -80,7 +82,7 @@ require_once('../config/db.php');
 				</div>
 				<div class="cadre" style="">
 					<div class="enfant">
-						<video id="video" width="640" height="480" autoplay></video>
+						<video id="video" style="width: 100%; height: 100%;" autoplay></video>
 					</div>
 				</div>
 				<div class="enter">

@@ -7,6 +7,7 @@ $_SESSION['changement'] = 0;
 <head>
 	<title>Camagru</title>
 	<link rel="stylesheet" type="text/css" href="./page/index.css">
+	<link rel="shortcut icon" href="./img/instagram-draw-logo.png">
 </head>
 <body>
 	<header class="header">

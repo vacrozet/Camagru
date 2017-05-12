@@ -4,8 +4,8 @@ require_once dirname(__DIR__)."/models/user.class.php";
 
 if (isset($_POST['Login']) && isset($_POST['Passwd']) && isset($_POST['Connexion']))
 {
-	$login = "vacrozet";
-	$passwd = hash('whirlpool', "okok");
+	$login = $_POST['Login'];
+	$passwd = hash('whirlpool', $_POST['Passwd']);
 	$sql = "SELECT * FROM `Utilisateur` 
 	 		WHERE `login` LIKE :login
 	 		AND `password` LIKE :passwd 

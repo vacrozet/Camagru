@@ -2,52 +2,53 @@
 session_start();
 require_once('../config/db.php');
 
+function erreur_prog($number)
+{
+	$_SESSION['erreur'] = $number;
+	header('Location: ../page/reinit_passwd.php');
+	exit();
+}
+
 function check_passwd($passwd, $re_passwd)
 {
 	$passwd = hash('whirlpool', $passwd);
 	$re_passwd = hash('whirlpool', $re_passwd);
-	if (strcmp($passwd, $re_passwd) == 0)
-		return true;
-	else
-		return false;
+	if (strcmp($passwd, $re_passwd) != 0)
+		erreur_prog(1);
+	return $passwd;
 }
 
-if ($_POST['Login'] != "" && $_POST['Passwd'] != "" && $_POST['Re-passwd'] != "" && $_POST['submit'] == "Changer mon mot de passe")
+if (!empty($_POST['Login']) && !empty($_POST['Passwd']) &&
+	!empty($_POST['Re-passwd']) && isset($_POST['submit']))
 {
-	$oui = "OUI";
-	$login = $_POST['Login'];
-	$login = trim($login);
-	$passwd = $_POST['Passwd'];
-	$repasswd = $_POST['Re-passwd'];
-	$passwd = trim($passwd);
-	$repasswd = trim($repasswd);
-	$passwd = hash('whirlpool', $passwd);
-	$repasswd = hash('whirlpool', $repasswd);
+	$login = trim($_POST['Login']);
+	$passwd = check_passwd($_POST['Passwd'], $_POST['Re-passwd']);
 
-	if (check_passwd($passwd, $repasswd) == false)
-		$_SESSION['erreur_2'] = 1;
-	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
-		echo "ERROR\n";
-	$req = "SELECT * FROM `Utilisateur` WHERE `login` LIKE '".$login."' AND `Actif` LIKE 'NON'";
-	$result = mysqli_query($db, $req);
-	$nb = mysqli_num_rows($result);
-	if ($nb == 1 && $_SESSION['erreur_2'] == 0)
+
+	$sql = "SELECT * FROM `Utilisateur` 
+			WHERE `login` LIKE :login 
+			AND `Actif` LIKE 'NON'";
+	$fields = ['login' => $login];
+	$allNews = Database::getInstance()->request($sql, $fields, false);
+	if (count($allUser) == 1)
 	{
-		if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
-			echo "ERROR\n";
-		$req = "UPDATE `Utilisateur` SET `password` = '".$passwd."', `actif` = 'OUI' WHERE `login` = '".$login."'";
-		mysqli_query($db, $req);
-		header('Location: ../index.php');
+		$sql = "UPDATE `Utilisateur` 
+				SET `password` = :passwd, `actif` = 'OUI' 
+				WHERE `login` = :login";
+		$fields = ['passwd' => $passwd, 'login' => $login];
+		$allUser = Database::getInstance()->request($sql, $fields, false);
+		$_SESSION['erreur'] = 0;
+		header('Location: ../page/reinit_passwd.php');
 	}
 	else
-		header('Location: ../index.php');
+	{
+		$_SESSION['erreur'] = 2;
+		header('Location: ../page/reinit_passwd.php');
+	}
 }
 else
 {
-	if ($_POST['lgoin'] == "")
-		$_SESSION['erreur_1'] = 1;
-	if ($_POST['Passwd'] == "" || $_POST['Re-passwd'] == "")
-		$_SESSION['erreur_2'] = 1;
+	$_SESSION['erreur'] = 3
 	header('Location: ../page/modify_passwd.php');
 }
 ?>

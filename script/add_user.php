@@ -110,7 +110,7 @@ function check_exist($login, $mail)
 
 if (!empty($_POST['Login']) && !empty($_POST['Passwd']) && 
 	!empty($_POST['Re-passwd']) && !empty($_POST['Mail']) && 
-	!empty($_POST['condition']) && !empty($_POST['inscription']))
+	!empty($_POST['condition']) && isset($_POST['inscription']))
 {
 	$login = trim($_POST['Login']);
 	$passwd = check_passwd($_POST['Passwd'], $_POST['Re-passwd']);

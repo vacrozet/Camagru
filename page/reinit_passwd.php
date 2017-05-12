@@ -6,6 +6,8 @@ session_start();
 <head>
 	<title>Inscription | Camagru</title>
 	<link rel="stylesheet" type="text/css" href="./index.css">
+		<link rel="shortcut icon" href="../img/instagram-draw-logo.png">
+
 </head>
 <body>
 	<header class="header">
@@ -30,7 +32,10 @@ session_start();
 					<input style="text-align: center;<?php if($_SESSION['erreur_2'] == 1){?>border: solid 1px red; <?php }?>" type="Password" name="Passwd"    placeholder="Password*"><br /><br />
 					<input style="text-align: center;<?php if($_SESSION['erreur_2'] == 1){?>border: solid 1px red; <?php } $_SESSION['erreur_2'] = 0; ?>" type="Password" name="Re-passwd" placeholder="Re-Password*"><br /><br />
 					<input type="submit" name="submit" value="Changer mon mot de passe">
-					<?php if ($_SESSION['erreur_login'] == 1){?> <p style="color: red;">Un compte est déjà créer</p><?php $_SESSION['erreur_login'] = 0; }?>
+					<?php if ($_SESSION['erreur'] == 1){?> <p style="color: red;">Erreur Mot De Passe</p><?php }?>
+					<?php if ($_SESSION['erreur'] == 2){?> <p style="color: red;">Erreur Utilisateur</p><?php }?>
+					<?php if ($_SESSION['erreur'] == 3){?> <p style="color: red;">Champs Non Remplis</p><?php }?>
+					<?php if ($_SESSION['erreur'] == 0){?> <p style="color: red;">Mot de Passe Changer</p><?php $_SESSION['erreur'] = 0; }?>
 				</form><br />
 			</div>
  		</div>

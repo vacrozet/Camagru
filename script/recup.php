@@ -42,70 +42,45 @@ function send_mail($mail, $login)
 	$message.= PHP_EOL."--".$boundary_alt."--".PHP_EOL;
 	$message.= PHP_EOL."--".$boundary.PHP_EOL;
 	mail($mail,$sujet,$message,$header);
-	header('Location: ../index.php');
 }
 
-function getalluser($servername, $username, $mdp, $namedb)
+function set_login_no_actif($login)
 {
-    $array = array();
-    $db = mysqli_connect($servername, $username, $mdp, $namedb);
-    $req = mysqli_prepare($db, "SELECT * FROM Utilisateur");
-	if ($req != false)
-	{
-		mysqli_stmt_execute($req);
-        $result = mysqli_stmt_get_result($req);
-        while ($data = mysqli_fetch_assoc($result)) {
-			$array[] = $data;
-        }
-		mysqli_close($db);
-		return $array;
-	}
-	else
-	{
-		mysqli_close($db);
-		return null;
-	}
+ 	$sql = "UPDATE `Utilisateur` 
+ 			SET `Actif` = 'NON' 
+ 			WHERE `login` = :login";
+	$fields = ['login' => $login];
+	$allUser = Database::getInstance()->request($sql, $fields, false);
 }
+
 if (!empty($_POST['mail']) && isset($_POST['Recup']))
 {
-	$actif = "NON";
 	$mail = $_POST['mail'];
-
-
-
-
-	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
-		echo "ERROR\n";
-	$req = "SELECT * FROM `Utilisateur` WHERE `mail` LIKE '".$mail."'";
-	$result = mysqli_query($db, $req);
-	$nb = mysqli_num_rows($result);
-	if ($nb == 1)
+	$sql = "SELECT * FROM `Utilisateur` 
+			WHERE `mail` LIKE :mail
+			AND `Actif` LIKE 'OUI'";
+	$fields = ['mail' => $mail];
+	$allUser = Database::getInstance()->request($sql, $fields, false);
+	if (count($allUser) == 1)
 	{
-	    $db = getalluser($servername, $username, $mdp, $namedb);
-	    foreach ($db as $key => $value)
-	    {
-	    	if ($value['mail'] == $mail)
-	    		 {
-	    		 	$mail = $value['mail'];
-	    		 	$login = $value['login'];
-	    		 	if (!($db = mysqli_connect($servername, $username, $mdp, $namedb)))
-						echo "ERROR\n";
-	    		 	$req = "UPDATE `Utilisateur` SET `Actif` = '".$actif."' WHERE `login` = '".$login."'";
-					mysqli_query($db, $req);
-	    		 	send_mail($mail, $login);
-	    		 }
-	    }
+		foreach ($allUser as $key => $value) {
+			if ($key == "login")
+				$login = $value;
+		}
+		set_login_no_actif($login);
+	    send_mail($mail, $login);
+		header('Location: ../page/recup_passwd.php');
 	}
 	else
 	{
-		$_SESSION['erreur_mail'] = 1;
+		$_SESSION['erreur'] = 2;
 		header('Location: ../page/recup_passwd.php');
+
 	}
 }
 else
 {
-	$_SESSION['erreur_mail'] = 1;
+	$_SESSION['erreur'] = 1;
 	header('Location: ../page/recup_passwd.php');
 }
-
 ?>
