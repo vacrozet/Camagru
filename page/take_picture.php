@@ -61,7 +61,7 @@ session_start();
 				</div>
 				<div class="defile_photo" style="display: flex;">
 					<div style="height: 240px; width: 320px; border: solid 1px red;">
-						<canvas id="canvas" style="width: 100%; height: 100%;"></canvas>
+						<canvas id="photo" style="width: 100%; height: 100%;"></canvas>
 					</div>
 				</div>
 			</div>
