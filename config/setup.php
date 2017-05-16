@@ -1,7 +1,9 @@
 <?php  
-include_once('./config.php');
+require_once dirname(__DIR__)."/config/config.php";
+require_once dirname(__DIR__)."/models/user.class.php";
 
-$db = file_get_contents('../db/camagru.sql');
+
+$db = file_get_contents('./camagru.sql');
 
 try 
 {

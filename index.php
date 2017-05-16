@@ -1,6 +1,7 @@
 <?php  
 session_start();
 $_SESSION['changement'] = 0;
+// require_once dirname(__DIR__)."/camagru/config/setup.php";
 ?>
 <!DOCTYPE html>
 <html>

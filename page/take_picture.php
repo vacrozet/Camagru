@@ -59,10 +59,8 @@ session_start();
 							</div>
 					</div>
 				</div>
-				<div class="defile_photo" style="display: flex;">
-					<div style="height: 240px; width: 320px; border: solid 1px red;">
-						<canvas id="photo" style="width: 100%; height: 100%;"></canvas>
-					</div>
+				<div class="defile_photo" style="display: flex; overflow: auto;">
+						<canvas id="canvas" style="width: 100%; height: 100%;"></canvas>
 				</div>
 			</div>
 		</div>
@@ -83,6 +81,9 @@ session_start();
 				<div class="cadre" style="">
 					<div class="enfant">
 						<video id="video" style="width: 100%; height: 100%;" autoplay></video>
+						<!-- <video id="video" width="640" height="480" autoplay></video> -->
+<!-- 						<button id="snap">Snap Photo</button>
+						<canvas id="canvas" width="640" height="480"></canvas>		 -->
 					</div>
 				</div>
 				<div class="enter">
