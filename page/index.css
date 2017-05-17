@@ -65,11 +65,11 @@ html, body {
 	text-align: center;
 }
 .divcenter{
-	border: solid 1px red;
-	height: 88%;
+	height: 90%;
 	min-height: 400px;
 	min-width: 600px;
 	overflow: auto;
+	justify-content: center;
 	display: flex;
 }
 .bdfooter {
@@ -77,9 +77,11 @@ html, body {
 	background: #255E69;
 	margin-bottom: 0px;
 	display: flex;
-	flex-direction: row-reverse;
-	min-height: 20px;
-	min-width: 600px;
+	flex-direction: row;
+	height: 20px;
+	position: absolute;
+	width: 100%;
+	bottom: 0;
 }
 .auteur {
 	margin-right: 20px;
@@ -88,27 +90,25 @@ html, body {
 }
 .take_picture {
 	height: 80%;
-	width: 70%;
+	width: 90%;
 	margin: auto;
 	display: flex;
 	flex-direction: column;
-	background-color: grey;
-	border-radius: 20px;
-	box-shadow: 10px 10px 2em black;
+	background-color: #255E69;
+
 	min-width: 642px;
-	min-height: 690px;
-/*	min-height: 700px;
-*/}
+	min-height: 550px;
+}
 .parent {
 	display: flex;
 	flex-direction: row;
 }
 .parents {
 	display: flex;
-	min-width: 600px;
+	min-width: 450px;
 }
 .choose {
-	height: 20%;
+	height: 30%;
 	display: flex;
 	flex-direction: column;
 }
@@ -116,23 +116,20 @@ html, body {
 	
 	height: 70%;
 	display: flex;
-}
-.enter {
-	border: solid 1px black;
-	height: 10%;
-	display: flex;
+	flex-direction: row;
 }
 .direction {
 	display: flex;
-	flex-direction: row;
+	flex-direction: row-reverse;
+	flex-wrap: wrap;
 }
 .take {
-	width: 70%;
+	width: 80%;
 	height: 100%;
 }
 .visu {
 	height: 100%;
-	width: 30%;
+	width: 20%;
 	min-height: 500px;
 	min-width: 260px;
 	display: flex;
@@ -141,25 +138,23 @@ html, body {
 	margin: auto;
 	height: 80%;
 	width: 90%;
-	background: grey;
-	box-shadow: 10px 10px 2em black;
+	background: #255E69;
 	display: flex;
 	flex-direction: column;
 	min-height: 690px;
-	border-radius: 20px;
 
 }
 .choose_filtre {
-	height: 15%;
+	height: 5%;
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 
 }
 .defile_photo {
-	border: solid 1px red;
-	height: 85%;
+	height: 95%;
 	width: 100%;
+	scroll-behavior:
 }
 .ecart {
 	width: 100%;
@@ -205,10 +200,6 @@ html, body {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-.bouton {
-	height: 100%;
-	width: 100%;
-}
 .divcentermoncompte {
 	height: 90%;
 	width: 80%;
@@ -219,4 +210,5 @@ html, body {
 	overflow: auto;
 	background-color: #0F4752;
 	border-radius: 20px 0 0 20px;
+	margin: auto;
 }

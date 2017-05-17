@@ -110,25 +110,26 @@
 // 				   setTimeout(document.getElementById('zdp').submit(), 40);
 // 				   }, false);
 // }
-	var video = document.getElementById('video');
+var video = document.getElementById('video');
 
-	// Get access to the camera!
-	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-	    // Not adding `{ audio: true }` since we only want video now
-	    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
-	        video.src = window.URL.createObjectURL(stream);
-	        video.play();
-	    });
-	}
-	//var canvas = document.getElementById('canvas');
-	//var context = canvas.getContext('2d');
-	var video = document.getElementById('video');
-	var i = 0;
-	// Trigger photo take
-	document.getElementById("snap").addEventListener("click", function() {
-		var myElement = document.createElement('canvas');
-		document.getElementById('defile_photo').appendChild(myElement);
-		myElement.getContext('2d').drawImage(video,0,0,440,240);
-		//context.drawImage(video, 0, 0, 440, 240);
-
-	});
+// Get access to the camera!
+if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Not adding `{ audio: true }` since we only want video now
+    navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+        video.src = window.URL.createObjectURL(stream);
+        video.play();
+    });
+}
+//var canvas = document.getElementById('canvas');
+//var context = canvas.getContext('2d');
+var video = document.getElementById('video');
+// Trigger photo take
+document.getElementById("snap").addEventListener("click", function() {
+	var myElement = document.createElement('canvas');
+	document.getElementById('defile_photo').appendChild(myElement);
+	// document.getElementById('defile_photo').innerHTML = myElement + document.getElementById('defile_photo').innerHTML;
+	myElement.getContext('2d').drawImage(video, 0, 0, 320, 240);
+	//context.drawImage(video, 0, 0, 440, 240);
+	var objDiv = document.getElementById("defile_photo");
+	objDiv.scrollTop = objDiv.scrollHeight;
+});

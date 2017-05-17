@@ -16,7 +16,7 @@ if (isset($_POST['Login']) && isset($_POST['Passwd']) && isset($_POST['Connexion
 				'passwd' => $passwd
 			];
 	$allUser = Database::getInstance()->request($sql, $fields, false);
-	if (count($allUser) == 1)
+	if (count($allUser) == 1 && !empty($allUser))
 	{
 		foreach ($allUser as $key => $value) {
 			if ($key == "admin")
@@ -26,4 +26,6 @@ if (isset($_POST['Login']) && isset($_POST['Passwd']) && isset($_POST['Connexion
 	}
 	header('Location: ../index.php');
 }
+else
+	header('Location: ../index.php');
 ?>

@@ -44,52 +44,39 @@ session_start();
 		</div>		
 	</header>
 	<div class="divcenter direction">
-		<div class="visu">
-			<div class="enfant test">
-				<div class="choose_filtre">
-					<div class="ecart">
-						<div class="enfant">
-							<p style="font-size: 16px; "><u><B><I>visulisation des anciennes photo</I></B></u></p>
-						</div>
-					</div>
-					<div class="ecart" style="border: solid 1px red;">
-							<div class="dropdown" style="border: solid 1px red;">
-								<button class="bouton" class="dropbtn">------>filtre<------</button>
-								<?php include "./menu.php"; ?>
-							</div>
-					</div>
-				</div>
-				<div id="defile_photo" style="display: flex; overflow: auto;">
-						<!-- <canvas id="canvas" style="width: 100%; height: 20%;"></canvas> -->
-				</div>
-			</div>
-		</div>
 		<div class="take parents">
 			<div class="take_picture">
 				<div class="choose">
-					<div style="height: 50%; text-align: center; display: flex;">
+					<div style="height: 30%; text-align: center; display: flex;">
 						<p class="enfant" style="font-size: 20px;"><u><I><B>CHOISI TON FILTRE:</B></I></u></p>
 					</div>
-					<div style="height: 50%; display: flex; flex-direction: row; justify-content: space-between;">
-						<div style="width: 15%; margin: auto; text-align: center;">Exemple1.png<input type="checkbox" name="Exemple1 text-align: center;"> </div>
-						<div style="width: 15%; margin: auto; text-align: center;">Exemple2.png<input type="checkbox" name="Exemple1 text-align: center;"> </div>
-						<div style="width: 15%; margin: auto; text-align: center;">Exemple3.png<input type="checkbox" name="Exemple1 text-align: center;"> </div>
-						<div style="width: 15%; margin: auto; text-align: center;">Exemple4.png<input type="checkbox" name="Exemple1 text-align: center;"> </div>
-						<div style="width: 15%; margin: auto; text-align: center;">Exemple5.png<input type="checkbox" name="Exemple1 text-align: center;"> </div>
+					<div style="height: 70%; display: flex; flex-direction: row; justify-content: center;">
+					<div style="width: 20%; height: 100%;"><img style="max-width: 100%; max-height: 100%;" src="../img/avion.png"></div>
+					<div style="width: 20%; height: 100%;"><img style="max-width: 100%; max-height: 100%;" src="../img/apple.png"></div>
+					<div style="width: 20%; height: 100%;"><img style="max-width: 100%; max-height: 100%;" src="../img/tablette.png"></div>
+					<div style="width: 20%; height: 100%;"><img style="max-width: 100%; max-height: 100%;" src="../img/irefox.png"></div>
+					<div style="width: 20%; height: 100%;"><img style="max-width: 100%; max-height: 100%;" src="../img/bassine.png"></div>
 					</div>
 				</div>
-				<div class="cadre" style="">
-					<div class="enfant">
+				<div class="cadre" style="justify-content: center; display: flex;">
+					<div style="width: 80%;">
 						<video id="video" style="width: 100%; height: 100%;" autoplay></video>
-						<!-- <video id="video" width="640" height="480" autoplay></video> -->
-<!-- 						<button id="snap">Snap Photo</button>
-						<canvas id="canvas" width="640" height="480"></canvas>		 -->
 					</div>
+					<div style="margin: auto;">
+						<button style="border-radius: 100px; text-align: center; height : 6vw; width: 6vw;" id="snap">Snap</button>
+					</div>				
 				</div>
-				<div class="enter">
-					<div class="enfant">
-						<button style="border-radius: 100px; text-align: center; height :50px; width: 50px;" id="snap">Snap</button>
-					</div>					
+			</div>
+		</div>
+		<div class="visu">
+			<div class="enfant test">
+				<div class="choose_filtre">
+						<div class="enfant">
+							<p style="font-size: 16px; "><u><B><I>visulisation des anciennes photo</I></B></u></p>
+						</div>
+				</div>
+				<div id="defile_photo" class="defile_photo" style="display: flex; overflow: auto; flex-direction: column;">
+						<!-- <canvas id="canvas" style="width: 100%; height: 20%;"></canvas> -->
 				</div>
 			</div>
 		</div>
