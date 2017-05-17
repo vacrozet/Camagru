@@ -59,8 +59,8 @@ session_start();
 							</div>
 					</div>
 				</div>
-				<div class="defile_photo" style="display: flex; overflow: auto;">
-						<canvas id="canvas" style="width: 100%; height: 100%;"></canvas>
+				<div id="defile_photo" style="display: flex; overflow: auto;">
+						<!-- <canvas id="canvas" style="width: 100%; height: 20%;"></canvas> -->
 				</div>
 			</div>
 		</div>

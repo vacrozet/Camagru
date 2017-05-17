@@ -120,11 +120,15 @@
 	        video.play();
 	    });
 	}
-	var canvas = document.getElementById('canvas');
-	var context = canvas.getContext('2d');
+	//var canvas = document.getElementById('canvas');
+	//var context = canvas.getContext('2d');
 	var video = document.getElementById('video');
 	var i = 0;
 	// Trigger photo take
 	document.getElementById("snap").addEventListener("click", function() {
-		context.drawImage(video, 0, i++, 440, 240);
+		var myElement = document.createElement('canvas');
+		document.getElementById('defile_photo').appendChild(myElement);
+		myElement.getContext('2d').drawImage(video,0,0,440,240);
+		//context.drawImage(video, 0, 0, 440, 240);
+
 	});
