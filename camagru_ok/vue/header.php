@@ -26,11 +26,11 @@ $_SESSION['admin'] = "OUI";
 		{ 
 			if ($_SESSION['admin'] == "OUI")
 			{
-				echo "<img class=\"img\" src=\"./img/server.png\">";
+				echo "<a href=\"#\"><img class=\"img\" src=\"./img/server.png\"></a>";
 			 } ?>
-		<a href=""><img class="img" src="./img/logout.png"></a>
-		<a href=""><img class="img" src="./img/instagram.png"></a>
-		<a href=""><img src="./img/user-account-box.png" href=""></a>
+		<a href="#"><img class="img" src="./img/logout.png"></a>
+		<a href="#"><img class="img" src="./img/instagram.png"></a>
+		<a href="#"><img src="./img/user-account-box.png" href=""></a>
 		</div>
 		<?php } ?>
 

@@ -1,6 +1,9 @@
 <?php 
 session_start();
-include('./vue/header.php');?>
+include('./vue/header.php');
+if ($_SESSION['user_name'] == "")
+{
+?>
 <div id="acceuil">
 	<div style="width: 50%; text-align: center; vertical-align: middle;">
 		<I><p style="color: white; font-size: 4vw;">Bienvenue sur<br /> Camagru</p></I>
@@ -24,4 +27,13 @@ include('./vue/header.php');?>
 		</div>	
 	</div>
 </div>
-<?php include('./vue/footer.html') ?>
+<?php
+}
+else
+{ ?>
+
+
+
+<?php 
+}
+//include('./vue/footer.html'); ?>
