@@ -1,26 +1,30 @@
 <?php
 session_start();
+$_SESSION['user_name'] = "vacrozet";
 ?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Camagru</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./vue/index.css">
 	<link rel="shortcut icon" href="../img/instagram-draw-logo.png">
 </head>
 <body>
 	<header class="header">
-		<div class="titre"><p id="titre"><u><I>Camagru</I></u></p></div>
-		<div style="border: solid 1px red; width: 50px;"></div>
-		<div style="border: solid 1px red; width: 50px;"></div>
-		<div style="border: solid 1px red; width: 50px;"></div>
-		<div>
+		<div class="titre"><p id="titre"><I>Camagru</I></p></div>
+		<?php if ($_SESSION['user_name'] != "") { ?>
+		<div style="margin-right: 10px;">
 			<form method="post" action="./script/connexion.php">
-				<input type="Login" name="Login" placeholder="Login"><br />
-				<input type="Password" name="Passwd" placeholder="Password"><br />
-				<input type="submit" name="Connexion" value="Sign On">
+				<input type="Login" name="Login" placeholder="Login">
+				<input type="Password" name="Passwd" placeholder="Password">
+				<button type="submit" name="Connexion" value="Sign On">Sign On</button>
 			</form>
 		</div>
+		<?php } else { ?>
+
+		<?php } ?>
+
 	</header>
 <!-- 	<header class="header">
 		<div class="inheaderborder">
