@@ -51,16 +51,17 @@ session_start();
 						<p class="enfant" style="font-size: 20px;"><u><I><B>CHOISI TON FILTRE:</B></I></u></p>
 					</div>
 					<div style="height: 70%; display: flex; flex-direction: row; justify-content: center;">
-					<div style="width: 20%; height: 100%;"><img style="max-width: 100%; max-height: 100%;" src="../img/avion.png"></div>
-					<div style="width: 20%; height: 100%;"><img style="max-width: 100%; max-height: 100%;" src="../img/apple.png"></div>
-					<div style="width: 20%; height: 100%;"><img style="max-width: 100%; max-height: 100%;" src="../img/tablette.png"></div>
-					<div style="width: 20%; height: 100%;"><img style="max-width: 100%; max-height: 100%;" src="../img/irefox.png"></div>
-					<div style="width: 20%; height: 100%;"><img style="max-width: 100%; max-height: 100%;" src="../img/bassine.png"></div>
+					<div class="photo"><img onclick="addfiltreavion()" id="avion" class="img_photo" src="../img/avion.png"></div>
+					<div class="photo"><img onclick="addfiltre(apple)" id="apple" class="img_photo" src="../img/apple.png"></div>
+					<div class="photo"><img onclick="addfiltre(cadre)" id="cadre" class="img_photo" src="../img/tablette.png"></div>
+					<div class="photo"><img onclick="addfiltre(firefox)" id="firefox" class="img_photo" src="../img/irefox.png"></div>
+					<div class="photo"><img onclick="addfiltre(bassine)" id="bassine" class="img_photo" src="../img/bassine.png"></div>
 					</div>
 				</div>
 				<div class="cadre" style="justify-content: center; display: flex;">
 					<div style="width: 80%;">
 						<video id="video" style="width: 100%; height: 100%;" autoplay></video>
+						<img id="testimg" src="" style="top: 0px; position: absolute; width: 10vw; right: 100px;" />
 					</div>
 					<div style="margin: auto;">
 						<button style="border-radius: 100px; text-align: center; height : 6vw; width: 6vw;" id="snap">Snap</button>
@@ -81,11 +82,7 @@ session_start();
 			</div>
 		</div>
 	</div>
-	<footer class="bdfooter">
-		<div class="auteur">
-		<div class="enfant">@vacrozet 2017 | Camagru</div>
-		</div>
-	</footer>
+	<?php  require_once("./footer.html"); ?>
 	<script language="javascript" src="../js/camera.js"></script>
 </body>
 </html>

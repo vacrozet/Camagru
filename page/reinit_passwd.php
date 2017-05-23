@@ -39,10 +39,6 @@ session_start();
 				</form><br />
 			</div>
  		</div>
-	<footer class="bdfooter">
-		<div class="auteur">
-		<div class="enfant">@vacrozet 2017 | Camagru</div>
-		</div>
-	</footer>
+	<?php  require_once("./footer.html"); ?>
 </html>
 </body>
