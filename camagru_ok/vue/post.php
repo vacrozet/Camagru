@@ -13,8 +13,8 @@
 			<img src="./img/target.png">
 			<img src="./img/note.png">
 			<img src="./img/valentines.png">
-
-		</div>
+<!--  JEN SUIS AU IMAGE JS...
+ -->		</div>
 	</div>
 	<script language="javascript" src="../Js/camera.js"></script>
 </div>
