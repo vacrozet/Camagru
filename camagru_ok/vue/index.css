@@ -7,8 +7,6 @@ html, body {
 	background-color: #262626; 
 }
 .header {
-/*	width: 100%;
-	height: 8%;*/
 	display: flex;
 	justify-content: space-between;
 	background-color: #E15D37;
@@ -29,14 +27,14 @@ html, body {
 	padding : 15px;
 }
 
-button {
+.button {
 	border: 2px solid white;
 	background-color: #E15D37;
 	color: white;
 	border-radius: 10px;
 	height: 40px;
 }
-button:hover {
+.button:hover {
 	color: #E15D37;
 	background-color: white;
 }
@@ -74,15 +72,39 @@ footer {
 	width: 50%;
 	height: 60%;
 	min-width: 155px;
-	margin: auto;
+	min-height: 400px;
 	background-color: #484848;
-	border: none; 
 	text-align: center;
-	justify-content: center;
 	margin: auto;
-	min-height: 340px;
 	border-radius: 5px;
+  	line-height: 100%;
 }
 .img {
 	margin-right: 10px;
+}
+#account {
+	width: 100%;
+	height: 80%;
+	display: flex;
+	justify-content: center;
+}
+#divcenter {
+	width: 80%;
+	height: 80%;
+	background: #464646;
+
+	display: flex;
+	flex-direction: column;
+
+}
+.button_ins {
+	border: 2px solid #E15D37;
+	background-color: #262626;
+	color: #E15D37;
+	border-radius: 2px;
+	height: 40px;
+	width: 10em;
+}
+.button_ins:hover {
+	background-color: #464646;	
 }
