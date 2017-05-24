@@ -1,9 +1,5 @@
-<?php  
-session_start();
-include('./header.php');
-?>
-
-
-<?php
-include('./footer.php');
-?>
+<div class="post">
+	<div class="centerpost">
+		
+	</div>
+</div>

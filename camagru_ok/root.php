@@ -8,6 +8,6 @@ if ($_GET['vue'] == "account")
 if ($_GET['vue'] == "wall")
 	header('Location: ./index.php');
 if ($_GET['vue'] == "post")
-	header('./vue/post.php');
+	header('Location: ./index.php?vue=post');
 
 ?>

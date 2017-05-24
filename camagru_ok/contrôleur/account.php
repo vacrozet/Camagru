@@ -42,7 +42,7 @@ if (isset($_POST['oldpasswd']) && isset($_POST['newpasswd']) && isset($_POST['re
 	}
 }
 
-if (isset($_POST['passwd']) && isset($_POST['delete'])) 
+if (!empty($_POST['passwd']) && isset($_POST['delete'])) 
 {
 	$_SESSION['user_name'] = "";
 	header ('Location: ../index.php');

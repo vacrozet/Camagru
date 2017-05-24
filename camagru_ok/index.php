@@ -10,9 +10,8 @@ else
 
 	if ($_GET['vue'] == "account")
 		include('./vue/account.php');
-
-	if ($_GET['vue'] == "wall");
-
+	if ($_GET['vue'] == "post")
+		include('./vue/post.php');
 	else
 		include('./vue/the_wall.php');
 }
