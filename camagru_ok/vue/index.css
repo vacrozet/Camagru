@@ -115,10 +115,32 @@ footer {
 	justify-content: center;
 }
 .centerpost {
-	width: 90%;
+	width: 30%;
 	height: 90%;
 	background: #464646;
-
+	min-width: 555px;
+}
+#contener {
+	position: relative;
+	border: solid 1px red;
+	min-width: 320px;
+	flex-wrap: wrap;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	height: 43%;
+}
+.png {
+	position: relative;
+	border: solid 1px red;
+	min-width: 320px;
+	flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	height: 20%;
+	flex-wrap: wrap;
+	overflow: auto;
+}
+.photo {
+	width: 20%;
+	height: 100%;
 }
