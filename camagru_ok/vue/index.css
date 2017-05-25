@@ -116,7 +116,7 @@ footer {
 }
 .centerpost {
 	width: 30%;
-	height: 90%;
+	height: 105%;
 	background: #464646;
 	min-width: 555px;
 }
@@ -136,11 +136,20 @@ footer {
 	flex-wrap: wrap;
 	display: flex;
 	flex-direction: row;
-	height: 20%;
+	height: 128px;
 	flex-wrap: wrap;
 	overflow: auto;
 }
 .photo {
 	width: 20%;
 	height: 100%;
+}
+#image {
+	position: absolute;
+}
+.parent {
+	text-align: center;
+	width: 100%;
+	position: absolute;
+	cursor: pointer;
 }

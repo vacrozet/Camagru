@@ -8,6 +8,23 @@ session_start();
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="./vue/index.css">
 	<link rel="shortcut icon" href="../img/instagram-draw-logo.png">
+	<script type="text/javascript" language="JavaScript">
+		var cursorPositionX = -1;
+		var cursorPositionY = -1;
+
+		function clicked(e) {
+			cursorPositionX = e.screenX;
+			cursorPositionY = e.screenY;
+		}
+
+		function dragged(e) {
+			var deltaX = cursorPositionX - e.screenX;
+			var deltaY = cursorPositionY - e.screenY;
+			cursorPositionX = e.screenX;
+			cursorPositionY = e.screenY;
+			window.scrollBy(deltaX, deltaY);
+		}
+	</script>
 </head>
 <body>
 	<header class="header">
