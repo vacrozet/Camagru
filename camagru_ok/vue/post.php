@@ -3,21 +3,19 @@
 		<div id=contener>
 		
 
-			<video id="video" style="min-width: 320px; width: 100%; height: 100%;" autoplay></video>
-
+		<video id="video" style="min-width: 320px; width: 100%; height: auto;" autoplay></video>
+<!--  		<video id="video"></video>
+ -->
 
 			<div id=create class="parent" style="top:0px; left:0px;" onMouseDown="beginDrag(this, event)">
-<!-- 				<img
-				id="testimg"
-				src=""
-				class="image"
-				onMouseDown="Javascript:clicked(event)"
-				onDrag="Javascript:dragged(event)"
-				onDblClick="self.close();"
-				></img>
- -->			
 			</div>
 
+		</div>
+		<div id=command>
+			<img id=capture src="./img/capture.png">
+			<img src="./img/checked.png">
+			<img style="cursor: pointer;`" onclick="deleteElemCapt()" src="./img/recycle.png">
+			<img src="./img/upload.png">
 		</div>
 		<div class="png">
 			<img onclick="addfiltrephoto('camera')" src="./img/camera.png">
@@ -27,7 +25,7 @@
 			<img onclick="addfiltrephoto('note')" src="./img/note.png">
 			<img onclick="addfiltrephoto('valentines')" src="./img/valentines.png">
 <!--  JEN SUIS AU IMAGE JS...
- -->		</div>
+ -->	</div>
 	</div>
 	<script type="text/javascript" language="JavaScript" src="./Js/drag.js" ></script>
 	<script language="javascript" src="./Js/camera.js"></script>
