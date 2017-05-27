@@ -32,9 +32,9 @@ function beginDrag(elementToDrag, event) {
 		var hauteur = document.getElementById('video').clientHeight;
 		var largeur = document.getElementById('video').clientWidth;
 
-		console.log(largeur)
-		console.log(tab[0])
-		console.log((event.clientX - deltaX))
+		// console.log(largeur)
+		// console.log(tab[0])
+		// console.log((event.clientX - deltaX))
 		if (largeur - 128 >= (event.clientX - deltaX) && 0 <= (event.clientX - deltaX))
 			elementToDrag.style.left = (event.clientX - deltaX) + "px";
 		if (hauteur - 128 >= (event.clientY - deltaY) && 0 <= (event.clientY - deltaY))

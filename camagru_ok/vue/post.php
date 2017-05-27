@@ -1,5 +1,5 @@
 <div class="post">
-	<div class="centerpost">
+	<div class="centerpost" id=centerpost>
 		<div id=contener>
 		
 
@@ -26,6 +26,9 @@
 			<img onclick="addfiltrephoto('valentines')" src="./img/valentines.png">
 <!--  JEN SUIS AU IMAGE JS...
  -->	</div>
+ 		<div id=photo_prec>
+ 			
+ 		</div>
 	</div>
 	<script type="text/javascript" language="JavaScript" src="./Js/drag.js" ></script>
 	<script language="javascript" src="./Js/camera.js"></script>
