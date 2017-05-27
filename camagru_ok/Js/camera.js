@@ -33,6 +33,18 @@ function deleteElemCapt() {
 		document.getElementById('photo_prec').appendChild(png_prec);
 		document.getElementById('photo_prec').setAttribute('title', 'Publier');
 		document.getElementById('photo_prec').setAttribute('onclick', 'publiPrec()');
+
+		document.getElementById('inputimg_prec').value = document.getElementById('inputimg_pris').value;
+		document.getElementById('inputpng_prec').value = document.getElementById('inputpng_pris').value;
+
+		document.getElementById('inputtop_prec').value = document.getElementById('inputtop_pris').value;
+		document.getElementById('inputleft_prec').value = document.getElementById('inputleft_pris').value;
+		document.getElementById('inputimg_pris').removeAttribute("value");
+		document.getElementById('inputpng_pris').removeAttribute("value");
+		document.getElementById('inputtop_pris').removeAttribute("value");
+		document.getElementById('inputleft_pris').removeAttribute("value");
+
+
 		deleteElem();
 		var obj = document.getElementById('contener');
 		var old = document.getElementById('img_pris');
@@ -69,7 +81,6 @@ function addfiltrephoto(png){
 }
 
 var video = document.getElementById('video');
-console.log(video);
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 	navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
  		video.src = window.URL.createObjectURL(stream);
@@ -90,46 +101,23 @@ document.getElementById("capture").addEventListener("click", function() {
 		var ctx = myElement.getContext('2d');
 		ctx.drawImage(video, 0, 0, 640, 480);
 		img_pris.src = myElement.toDataURL();
+
 		document.getElementById('contener').appendChild(img_pris);
 
 		var png_pris = document.createElement('img');
-		png_pris.setAttribute("src", "./img/camera.png");
 		png_pris.src = document.getElementById('image').src;
 		png_pris.setAttribute("id", "png_pris");
 		png_pris.setAttribute("style", "position: absolute");
 		png_pris.style.top = document.getElementById("create").style.top;
 		png_pris.style.left = document.getElementById("create").style.left;
 		document.getElementById('contener').appendChild(png_pris);
+
+		document.getElementById('inputimg_pris').value = img_pris.getAttribute("src");
+		document.getElementById('inputpng_pris').value = document.getElementById('image').getAttribute("src");
+		document.getElementById('inputtop_pris').value = document.getElementById("create").style.top;
+		document.getElementById('inputleft_pris').value = document.getElementById("create").style.left;
 	}
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

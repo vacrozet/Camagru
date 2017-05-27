@@ -176,4 +176,5 @@ footer {
 #photo_prec:hover {
 	filter: blur(5px);
     opacity: .5;
+    content: Publier;
 }
