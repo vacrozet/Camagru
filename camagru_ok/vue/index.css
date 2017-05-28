@@ -186,3 +186,9 @@ footer {
 	height: auto;
 	background-color: #464646;
 }
+#upload {
+	width: 100%;
+	height: auto;
+	border-top: 19px #E15D37;
+	text-align: center;
+}
