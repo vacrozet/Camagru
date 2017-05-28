@@ -2,21 +2,18 @@
 	<div class="centerpost" id=centerpost>
 		<div id=contener>
 		
-
 		<video id="video" style=" width: 640px; height: 480px;" autoplay></video>
-<!--  		<video id="video"></video>
- -->
 
 			<div id=create class="parent" style="top:0px; left:0px;" onMouseDown="beginDrag(this, event)">
 			</div>
 
 		</div>
 		<div id=command>
-			<button style="background-color: transparent; border: none;"><img id=capture src="./img/capture.png"></button>
-			<input type="hidden" id="inputimg_pris" name="img_pris">
-			<input type="hidden" id="inputpng_pris" name="png_pris">
-			<input type="hidden" id="inputtop_pris" name="top_pris">
-			<input type="hidden" id="inputleft_pris" name="left_pris">
+				<button style="background-color: transparent; border: none;"><img id=capture src="./img/capture.png"></button>
+				<input type="hidden" id="inputimg_pris" name="img_pris">
+				<input type="hidden" id="inputpng_pris" name="png_pris">
+				<input type="hidden" id="inputtop_pris" name="top_pris">
+				<input type="hidden" id="inputleft_pris" name="left_pris">
 			<form method="POST" action="img_merge.php">
 				<input type="hidden" id="inputimg_prec" name="img_prec">
 				<input type="hidden" id="inputpng_prec" name="png_prec">
@@ -27,11 +24,15 @@
 			<button style="background-color: transparent; border: none;"><img style="cursor: pointer;`" onclick="deleteElemCapt()" src="./img/recycle.png"></button>
 			<button style="background-color: transparent; border: none;"><img src="./img/upload.png"></button>
 		</div>
-<!-- 		<div id=upload>
-			<h2>Upload an image</h2>
-			<input type="file" name="fichier" onchange="file_upload()">
+		<div id=upload>
+	<form method="POST" action="upload.php" enctype="multipart/form-data">
+		<!-- On limite le fichier à 100Ko -->
+		<input type="hidden" name="MAX_FILE_SIZE" value="100000">
+		Fichier : <input type="file" name="avatar">
+		<input type="submit" name="envoyer" value="Envoyer le fichier">
+	</form>
 		</div>
- --> 		<div id=photo_prec>
+ 		<div id=photo_prec>
  		</div>
 	</div>
 	<div id=defile_png>

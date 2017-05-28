@@ -189,6 +189,6 @@ footer {
 #upload {
 	width: 100%;
 	height: auto;
-	border-top: 19px #E15D37;
+	border-top: solid 3px #E15D37;
 	text-align: center;
 }
