@@ -116,13 +116,13 @@ footer {
 }
 .centerpost {
 	width: 640px;
-	height: 100%;
+	height: auto;
 	background: #464646;
 }
 #contener {
 	position: relative;
-	min-width: 320px;
 	flex-wrap: wrap;
+	height: 480px;
 	width: 640px;
 	display: flex;
 	flex-direction: row;

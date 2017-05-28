@@ -3,7 +3,7 @@
 		<div id=contener>
 		
 
-		<video id="video" style="min-width: 320px; width: 100%; height: auto;" autoplay></video>
+		<video id="video" style=" width: 640px; height: 480px;" autoplay></video>
 <!--  		<video id="video"></video>
  -->
 
