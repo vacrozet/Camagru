@@ -176,5 +176,13 @@ footer {
 #photo_prec:hover {
 	filter: blur(5px);
     opacity: .5;
-    content: Publier;
+}
+#defile_png {
+	width: 142px;
+	border-left: 4px solid #E15D37;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	height: auto;
+	background-color: #464646;
 }

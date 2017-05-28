@@ -43,8 +43,6 @@ function deleteElemCapt() {
 		document.getElementById('inputpng_pris').removeAttribute("value");
 		document.getElementById('inputtop_pris').removeAttribute("value");
 		document.getElementById('inputleft_pris').removeAttribute("value");
-
-
 		deleteElem();
 		var obj = document.getElementById('contener');
 		var old = document.getElementById('img_pris');
@@ -72,6 +70,20 @@ function addfiltrephoto(png){
 		myElement.setAttribute("src", "./img/note.png");
 	if (png == "credit")
 		myElement.setAttribute("src", "./img/credit-card.png");
+	if (png == "statistic")
+		myElement.setAttribute("src", "./img/statistic.png");
+	if (png == "flag")
+		myElement.setAttribute("src", "./img/flag.png");
+	if (png == "alarm")
+		myElement.setAttribute("src", "./img/alarm.png");
+	if (png == "bank")
+		myElement.setAttribute("src", "./img/bank.png");
+	if (png == "bulb")
+		myElement.setAttribute("src", "./img/bulb.png");
+	if (png == "launch")
+		myElement.setAttribute("src", "./img/launch.png");
+	if (png == "date")
+		myElement.setAttribute("src", "./img/date.png");
 	myElement.setAttribute("style", "top: 0px;left: 0px;");	
 	myElement.setAttribute("onMouseDown", "Javascript:clicked(event)");
 	myElement.setAttribute("onMouseDown", "Javascript:clicked(event)");
