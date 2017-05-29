@@ -192,3 +192,7 @@ footer {
 	border-top: solid 3px #E15D37;
 	text-align: center;
 }
+#img_up {
+	height: 480px;
+	width: 640px;
+}

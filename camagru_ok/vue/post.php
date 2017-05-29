@@ -1,11 +1,10 @@
 <div class="post">
 	<div class="centerpost" id=centerpost>
 		<div id=contener>
-		
-			<video id="video" style=" width: 640px; height: 480px;" autoplay></video>
-
-			<div id=create class="parent" style="top:0px; left:0px;" onMouseDown="beginDrag(this, event)">
+			<div id=lock style="height: 100%; width: 100%;">
+				<video id="video" style=" width: 640px; height: 480px;" autoplay></video>
 			</div>
+ 			<div id=create class="parent" style="top:0px; left:0px;" onMouseDown="beginDrag(this, event)"></div>
 
 		</div>
 		<div id=command>
@@ -14,11 +13,11 @@
 				<input type="hidden" id="inputpng_pris" name="png_pris">
 				<input type="hidden" id="inputtop_pris" name="top_pris">
 				<input type="hidden" id="inputleft_pris" name="left_pris">
-			<form method="POST" action="img_merge.php">
+			<form method="POST" action="./contrôleur/img_merge.php">
 				<input type="hidden" id="inputimg_prec" name="img_prec">
 				<input type="hidden" id="inputpng_prec" name="png_prec">
-				<input type="hidden" id="inputtop_prec" name="png_prec">
-				<input type="hidden" id="inputleft_prec" name="png_prec">
+				<input type="hidden" id="inputtop_prec" name="top_prec">
+				<input type="hidden" id="inputleft_prec" name="left_prec">
 				<button style="background-color: transparent; border: none;"><img src="./img/checked.png"></button>
 			</form>
 			<button style="background-color: transparent; border: none;"><img style="cursor: pointer;`" onclick="deleteElemCapt()" src="./img/recycle.png"></button>

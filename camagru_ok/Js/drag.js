@@ -28,9 +28,9 @@ function beginDrag(elementToDrag, event) {
 
 }
     function moveHandler(event) {
-		var tab = getPosition('video');
-		var hauteur = document.getElementById('video').clientHeight;
-		var largeur = document.getElementById('video').clientWidth;
+		var tab = getPosition('lock');
+		var hauteur = document.getElementById('lock').clientHeight;
+		var largeur = document.getElementById('lock').clientWidth;
 
 		// console.log(largeur)
 		// console.log(tab[0])
