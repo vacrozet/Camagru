@@ -131,5 +131,21 @@ document.getElementById("capture").addEventListener("click", function() {
 	}
 });
 
+function previewFile() {
+	var myElement = document.createElement('canvas');
+	myElement.width = 640;
+	myElement.height = 480;
+
+	var file = document.querySelector('input[type=file]').files[0];
+	var img_up = document.createElement('img');
+	img_up.setAttribute("id", "img_up");
+	var reader = new FileReader();
+	reader.readAsDataURL(file);
+	img_up.src = reader.result;
+
+	document.getElementById('contener').appendChild(img_up);
+
+	var preview = document.getElementById('contener');
+}
 
 

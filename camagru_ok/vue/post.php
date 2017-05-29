@@ -2,7 +2,7 @@
 	<div class="centerpost" id=centerpost>
 		<div id=contener>
 		
-		<video id="video" style=" width: 640px; height: 480px;" autoplay></video>
+			<video id="video" style=" width: 640px; height: 480px;" autoplay></video>
 
 			<div id=create class="parent" style="top:0px; left:0px;" onMouseDown="beginDrag(this, event)">
 			</div>
@@ -25,12 +25,12 @@
 			<button style="background-color: transparent; border: none;"><img src="./img/upload.png"></button>
 		</div>
 		<div id=upload>
-	<form method="POST" action="upload.php" enctype="multipart/form-data">
-		<!-- On limite le fichier à 100Ko -->
-		<input type="hidden" name="MAX_FILE_SIZE" value="100000">
-		Fichier : <input type="file" name="avatar">
-		<input type="submit" name="envoyer" value="Envoyer le fichier">
-	</form>
+			<input id="file" type="file" onchange="previewFile()">
+			<br>
+			<form id="zdp" method="post" enctype="multipart/form-data" action="#" class="upload-form">
+				<br>
+				<input id="test" type="hidden" name="test" value=>
+			</form>
 		</div>
  		<div id=photo_prec>
  		</div>
