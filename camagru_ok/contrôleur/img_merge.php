@@ -12,7 +12,7 @@ if (!empty($_POST['img_prec']) && !empty($_POST['png_prec']) && !empty($_POST['t
 	$photo = base64_decode($photo);
 	$photo = imagecreatefromstring($photo);
 	$png = imagecreatefrompng($png);
-	imagecopymerge($photo, $src, 0, 0, 0, 0, 128, 128, 100);	
+	imagecopymerge($photo, $png, 0, 0, 0, 0, 128, 128, 100);	
 }
 else
 	header('Location: ../index.php?vue=post');
