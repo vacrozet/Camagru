@@ -89,8 +89,8 @@ if (!empty($_POST['Login']) && !empty($_POST['Passwd']) &&
 	$mail = check_mail($_POST['Mail']);
 	check_exist($login, $mail);
 
-	$sql = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `mail`, `Actif`, `admin`) 
-			VALUES (NULL, :login, :passwd, :mail, 'NON', 'NON')";
+	$sql = "INSERT INTO `Utilisateur` (`index`, `login`, `password`, `mail`, `Actif`, `admin`, `nb_picture`) 
+			VALUES (NULL, :login, :passwd, :mail, 'NON', 'NON', '0')";
 
 	$fields = [	'login' => $login,
 				'passwd' => $passwd,

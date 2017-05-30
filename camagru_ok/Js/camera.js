@@ -167,7 +167,7 @@ document.getElementById("capture").addEventListener("click", function() {
 			document.getElementById('photo_prec').setAttribute('onclick', 'publiPrec()');
 
 			document.getElementById('inputimg_prec').value = document.getElementById('img_up').src;
-			document.getElementById('inputpng_prec').value = document.getElementById('image').src;
+			document.getElementById('inputpng_prec').value = document.getElementById('image').getAttribute("src");
 			document.getElementById('inputtop_prec').value = document.getElementById('create').style.top;
 			document.getElementById('inputleft_prec').value = document.getElementById('create').style.left;
 
