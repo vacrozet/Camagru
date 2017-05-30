@@ -11,7 +11,7 @@ function deleteElem() {
 	}
 } 
 
-function deleteElemCapt(nb) {
+function deleteElemCapt() {
 		if (document.getElementById('img_pris')) {
 			if (document.getElementById('img_prec')) {
 			var obj = document.getElementById('photo_prec');
@@ -145,10 +145,6 @@ document.getElementById("capture").addEventListener("click", function() {
 				obj.removeChild(old);
 				obj.removeChild(old2);
 				}
-			var myElement = document.createElement('canvas');
-			myElement.width = 640;
-			myElement.height = 480;
-			myElement.getContext('2d');
 
 			var img_prec = document.createElement('img');
 			img_prec.src = document.getElementById('img_up').src;
@@ -171,7 +167,7 @@ document.getElementById("capture").addEventListener("click", function() {
 			document.getElementById('inputtop_prec').value = document.getElementById('create').style.top;
 			document.getElementById('inputleft_prec').value = document.getElementById('create').style.left;
 
-			deleteElem(1);
+			deleteElem();
 				
 	}
 }
@@ -188,7 +184,5 @@ function previewFile() {
 	preview.setAttribute("id", "img_up");
 	document.getElementById('lock').appendChild(preview);
 	document.getElementById('video').setAttribute("style", "display:none");
-	// document.getElementById('video').setAttribute("style", "display: none");
+
 }
-
-
