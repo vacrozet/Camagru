@@ -1,4 +1,5 @@
 <?php 
+header("Location: ./index.php");
 $DB_DSN = 'mysql:host=localhost;dbname=Database';
 $DB_USER = 'root';
 $DB_PASSWORD = 'root';
@@ -8,5 +9,4 @@ $pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, $DB_EXTRA_PARAMS);
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo->query($sql);
 $pdo = null;
-header("Location: ../index.php");
 ?>

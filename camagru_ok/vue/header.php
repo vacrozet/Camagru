@@ -1,5 +1,7 @@
 <?php
 session_start();
+include_once './config/setup.php';
+
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,6 +1,5 @@
 <?php 
 session_start();
-include_once './config/setup.php';
 include('./vue/header.php');
 if ($_SESSION['user_name'] == "")
 	include('./vue/acceuil.php');
