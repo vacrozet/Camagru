@@ -40,8 +40,8 @@ if (!empty($_POST['img_prec']) && !empty($_POST['png_prec']) && !empty($_POST['t
 	unlink("./filtre.png");
 	unlink("./image.png");
 
-	$sql = "INSERT INTO `picture`(`index`, `author`, `path`, `date`)
-			VALUES (NULL, :login, :adresse, NULL)";
+	$sql = "INSERT INTO `picture`(`index`, `author`, `path`, `date`, `id_photo`)
+			VALUES (NULL, :login, :adresse, NULL, NULL)";
 	$fields = [
 				'login' => $login,
 				'adresse' => $Path
@@ -56,7 +56,7 @@ if (!empty($_POST['img_prec']) && !empty($_POST['png_prec']) && !empty($_POST['t
 				'nb_photo' => $nb_photo
 				];
 	$allUser = Database::getInstance()->request($sql, $fields, false);
-	header('Location: ../index.php');
+	header('Location: ../index.php?vue=10');
 }
 else
 	header('Location: ../index.php?vue=post');

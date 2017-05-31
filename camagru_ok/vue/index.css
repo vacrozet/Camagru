@@ -196,3 +196,112 @@ footer {
 	height: 480px;
 	width: 640px;
 }
+#acceuil_2 {
+	width: 100%;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+#wall {
+	margin: auto;
+	width: 30%;
+	height: 70%;
+	min-width: 400px;
+	max-width: 500px;
+	min-height: 600px;
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	background-color: #464646;
+}
+#logdate {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+	height: 10%;
+	min-height: 55px;
+}
+.text {
+	color: white;	
+}
+#wall_photo {
+	border-top: solid 3px #262626;
+	height: 50%;
+	display: flex;
+}
+#likecomment {
+	display: flex;
+	flex-direction: column;
+	height: 20%;
+	border-top: solid 3px #262626;	
+}
+#like {
+	width: 100%;
+	height: 30%;
+	text-align: center;
+	display: flex;
+}
+#likelike {
+	width: 50%;
+	height: 100%;
+}
+#buttonlike {
+	background-color: #E15D37;
+	color: white;
+	border: none;
+	width: 200px;
+	height: 100%;
+	font-size: 25px;
+}
+#buttonlike:hover {
+	background-color: white;
+	color: #E15D37;
+}
+#comment{
+	height: 60%;
+	width: 100%;
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+}
+#buttoncomment {
+	background-color: #E15D37;
+	color: white;
+	border: none;
+	width: 85px;
+	text-align: center;
+	height: 25px;
+	margin-left: 5px;
+	font-size: 15px;
+}
+#buttoncomment:hover {
+	background-color: white;
+	color: #E15D37;
+}
+#imgwall {
+	margin: auto;
+	height: 85%;
+	width: 90%;
+}
+#inputcomment {
+	margin-left: 20px;
+	height: 100%;
+	width: 90%;
+}
+#formcomment {
+	height: 70%;
+	width: 100%;
+}
+#commentaire {
+	height: 20%;
+	width: 100%;
+	overflow: auto;
+	max-height: 135px;
+}
+#intcomment {
+	height: 90%;
+	width: 100%;
+	overflow: auto;
+}

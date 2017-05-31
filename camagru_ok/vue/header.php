@@ -28,7 +28,7 @@ session_start();
 </head>
 <body>
 	<header class="header">
-		<div class="titre"><a style="text-decoration: none;" href="./root.php?vue=wall"><p id="titre"><I>Camagru</I></p></a></div>
+		<div class="titre"><a style="text-decoration: none;" href="./root.php?vue=10"><p id="titre"><I>Camagru</I></p></a></div>
 		<div style="margin-right: 10px;">
 		<?php if ($_SESSION['user_name'] == "") { ?>
 			<form method="post" action="./contrôleur/connexion.php">

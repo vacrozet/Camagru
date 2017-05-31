@@ -3,7 +3,7 @@ if(!defined("BDD_HOST"))
 	define("BDD_HOST", "localhost");
 
 if(!defined("BDD_DATABASE"))
-	define("BDD_DATABASE", "camagru_ok");
+	define("BDD_DATABASE", "Database");
 
 if(!defined("BDD_USER"))
 	define("BDD_USER", "root");

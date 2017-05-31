@@ -19,12 +19,14 @@ if (isset($_POST['Login']) && isset($_POST['Passwd']) && isset($_POST['Connexion
 	if (count($allUser) == 1 && !empty($allUser))
 	{
 		foreach ($allUser as $key => $value) {
+			if ($key == "index")
+				$_SESSION['index_user'] = $value;
 			if ($key == "admin")
 				$_SESSION['admin'] = $value;
 		}
 		$_SESSION['user_name'] = $login;
 	}
-	header('Location: ../index.php');
+	header('Location: ../index.php?vue=10');
 }
 else
 	header('Location: ../index.php');
