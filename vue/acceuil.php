@@ -3,7 +3,7 @@
 		<div style="margin: auto;">
 			<I><p style="color: white; font-size: 3vw">Bienvenue sur<br /> Camagru</p></I>
 			<img style="width: 10vw;" src="./img/insta-orange.png">
-			<p style="color: white; font-size: 2vw;" >Inscrit toi -></p>
+			<p style="color: white; font-size: 2vw;" >Inscris-toi -></p>
 			<?php if ($_SESSION['erreur'] == 12){?> <p style="color: white; font-size: 3vw;">Compte Créer!!<br />Merci de vérifier vos mails.</p><?php }?>
 			<?php if ($_SESSION['erreur'] == 11){?> <p style="color: white; font-size: 3vw;">Un compte est<br /> déjà créer</p><?php }?>
 		</div>
