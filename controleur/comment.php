@@ -36,10 +36,9 @@ function send_mail($mail, $login)
 	$message.= PHP_EOL."--".$boundary_alt."--".PHP_EOL;
 	$message.= PHP_EOL."--".$boundary.PHP_EOL;
 	mail($mail,$sujet,$message,$header);
-
 	header('Location: ../index.php?vue=10');
-}
 
+}
 
 function prep_mail($login)
 {
@@ -59,8 +58,9 @@ function prep_mail($login)
 }
 
 
-
-$commentaire = $_POST['commentaire'];
+if (!empty($_POST['commentaire']))
+{
+$commentaire = mysql_escape_string($_POST['commentaire']);
 $index_user = $_POST['id_user'];
 $id_photo = $_POST['id_photo'];
 $login_user = $_POST['login_user'];
@@ -76,5 +76,8 @@ $sql = "INSERT INTO `comment` (`index`, `id_photo`, `id_login`, `login`, `commen
 			];
 $commentaire = Database::getInstance()->request($sql, $fields, true);
 prep_mail($author);
+}
+else
+	header('Location: ../index.php?vue=10');
 
 ?>

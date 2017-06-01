@@ -23,16 +23,35 @@ if (!empty($_POST['Re-passwd']) && !empty($_POST['Passwd']))
 {
 	$login = $_POST['login'];
 	$passwd = check_passwd($_POST['Passwd'], $_POST['Re-passwd']);
-	$sql = "UPDATE `Utilisateur` 
-			SET `Actif` = :oui
-			WHERE `login` LIKE :login";
+	
+	$sql = "SELECT * FROM `utilisateur` 
+			WHERE `Actif` LIKE :non";
+	$fields = ['non' => "non"];
 
-	$fields = [
-				'login' => $login,
-				'oui' => "OUI"
-				];
-	$allUser = Database::getInstance()->request($sql, $fields, false);
-	header('location: ../index.php');
+	$allUser = Database::getInstance()->request($sql, $fields, true);
+	for ($i=0; $i < count($allUser); $i++) { 
+		foreach ($allUser[$i] as $key => $value) {
+			if ($key == "login")
+			{
+				if ($login = hash('whirlpool', hash('sha1', $value)))
+					$login = $value;
+			}
+		}
+	}
+	if (strlen($login) < 30)
+	{
+		$sql = "UPDATE `Utilisateur` 
+				SET `Actif` = :oui , `password` = :password 
+				WHERE `login` LIKE :login";
+
+		$fields = [
+					'login' => $login,
+					'password' => $passwd,
+					'oui' => "OUI"
+					];
+		$allUser = Database::getInstance()->request($sql, $fields, false);
+		header('location: ../index.php');
+	}
 }
 else
 	header('Location: ../index.php?vue=reinit');

@@ -4,7 +4,8 @@ require_once dirname(__DIR__)."/modele/user.class.php";
 
 function send_mail($mail, $login)
 {
-	$lien = "http://localhost:8080/camagru/controleur/activ_user.php?login=".$login."";
+	$sha = hash('sha1', $login);
+	$lien = "http://localhost:8080/camagru/controleur/activ_user.php?login=".$sha."";
 	$message_txt = "Salut, si tu recois ce message c'est que tu as t'inscrire a mon super site \"CAMAGRU\"";
 	$message_html = "
 	<html>

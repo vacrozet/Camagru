@@ -4,7 +4,8 @@ require_once dirname(__DIR__)."/modele/user.class.php";
 
 function send_mail($mail, $login)
 {
-	$lien = "http://localhost:8080/camagru/index.php?vue=reinit&login=".$login."";
+	$sha = hash('whirlpool', hash('sha1', $login));
+	$lien = "http://localhost:8080/camagru/index.php?vue=reinit&login=".$sha."";
 	$message_txt = " \"CAMAGRU\"";
 	$message_html = "
 	<html>
