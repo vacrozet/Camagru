@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once dirname(__DIR__)."/modele/user.class.php";
+	header('Location: ../index.php?vue=10');
 
 function send_mail($mail, $login)
 {
@@ -36,7 +37,6 @@ function send_mail($mail, $login)
 	$message.= PHP_EOL."--".$boundary_alt."--".PHP_EOL;
 	$message.= PHP_EOL."--".$boundary.PHP_EOL;
 	mail($mail,$sujet,$message,$header);
-	header('Location: ../index.php?vue=10');
 
 }
 
@@ -50,7 +50,7 @@ function prep_mail($login)
 
 	$author = Database::getInstance()->request($sql, $fields, true);
 
-	foreach ($author[0] as $key => $value) {
+	foreach ($author as $key => $value) {
 		if ($key == "mail")
 			$mail = $value;
 	}
@@ -60,24 +60,26 @@ function prep_mail($login)
 
 if (!empty($_POST['commentaire']))
 {
-$commentaire = mysql_escape_string($_POST['commentaire']);
-$index_user = $_POST['id_user'];
-$id_photo = $_POST['id_photo'];
-$login_user = $_POST['login_user'];
-$author = $_POST['author'];
 
-$sql = "INSERT INTO `comment` (`index`, `id_photo`, `id_login`, `login`, `comment`, `date`) VALUES (NULL, :id_photo, :id_user, :login_user, :commentaire, CURRENT_TIMESTAMP)";
+	$commentaire = $_POST['commentaire'];
+	if (preg_match('#script#', $commentaire) == 0)
+	{
+		$index_user = $_POST['id_user'];
+		$id_photo = $_POST['id_photo'];
+		$login_user = $_POST['login_user'];
+		$author = $_POST['author'];
 
-	$fields = [
-				'id_photo' => $id_photo,
-				'id_user' => $index_user,
-				'commentaire' => $commentaire,
-				'login_user' => $login_user
-			];
-$commentaire = Database::getInstance()->request($sql, $fields, true);
-prep_mail($author);
+		$sql = "INSERT INTO `comment` (`index`, `id_photo`, `id_login`, `login`, `comment`, `date`) VALUES (NULL, :id_photo, :id_user, :login_user, :commentaire, CURRENT_TIMESTAMP)";
+
+			$fields = [
+						'id_photo' => $id_photo,
+						'id_user' => $index_user,
+						'commentaire' => $commentaire,
+						'login_user' => $login_user
+					];
+		$commentaire = Database::getInstance()->request($sql, $fields, true);
+		prep_mail($author);
+	}
 }
-else
-	header('Location: ../index.php?vue=10');
 
 ?>

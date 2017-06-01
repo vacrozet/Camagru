@@ -1,5 +1,6 @@
 <?php
 require_once dirname(__DIR__)."/modele/user.class.php";
+header('Location: ../index.php?vue=10');
 
 function send_mail($mail, $login)
 {
@@ -36,7 +37,6 @@ function send_mail($mail, $login)
 	$message.= PHP_EOL."--".$boundary.PHP_EOL;
 	mail($mail,$sujet,$message,$header);
 
-	header('Location: ../index.php?vue=10');
 }
 
 function prep_mail($login)
@@ -49,7 +49,7 @@ $sql = "SELECT * FROM `utilisateur`
 
 $author = Database::getInstance()->request($sql, $fields, true);
 
-foreach ($author[0] as $key => $value) {
+foreach ($author as $key => $value) {
 	if ($key == "mail")
 		$mail = $value;
 }
