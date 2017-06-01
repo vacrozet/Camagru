@@ -1,20 +1,11 @@
-<?php  
-require_once dirname(__DIR__)."/config/config.php";
-require_once dirname(__DIR__)."/models/user.class.php";
-
-
-$db = file_get_contents('./camagru.sql');
-
-try 
-{
-    $dbh = new PDO('mysql:host='.BDD_HOST, BDD_USER, BDD_PASSWORD);
-    $dbh->query($db);
-    $dbh = null;
-} 
-catch (PDOException $e)
-{
-    print "Erreur !: " . $e->getMessage() . "<br/>";
-    die();
-}
-
+<?php 
+	header("Location: ../index.php?vue=10");
+	require('database.php');
+	
+	$sql = file_get_contents("./config/Database.sql");
+	
+	$pdo = new PDO($DB_DSN, $DB_USER, $DB_PASSWORD, $DB_EXTRA_PARAMS);
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$pdo->query($sql);
+	$pdo = null;
 ?>
