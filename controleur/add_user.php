@@ -47,7 +47,6 @@ function send_mail($mail, $login)
 function erreur_prog($number)
 {
 	$_SESSION['erreur'] = $number;
-	echo $_SESSION['erreur'];
 	header('Location: ../index.php');
 	exit();
 }

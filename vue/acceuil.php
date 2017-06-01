@@ -1,5 +1,5 @@
 <div id="acceuil">
-	<div style="width: 50%; text-align: center; display: flex;">
+	<div style="text-align: center; display: flex;">
 		<div style="margin: auto;">
 			<I><p style="color: white; font-size: 3vw">Bienvenue sur<br /> Camagru</p></I>
 			<img style="width: 10vw;" src="./img/insta-orange.png">
@@ -8,7 +8,7 @@
 			<?php if ($_SESSION['erreur'] == 11){?> <p style="color: white; font-size: 3vw;">Un compte est<br /> déjà créer</p><?php }?>
 		</div>
 	</div>
-	<div style="width: 50%; display: flex; height: 100%; ">
+	<div style="min-width: 768px; display: flex; height: 100%; ">
 		<div class="formulaire">
 			<img style="margin-top: 10px;" src="./img/user.png">
 			<form method="Post" action="./controleur/add_user.php"><br />
@@ -18,6 +18,7 @@
 					<input style="text-align: center; height: 20px;<?php if($_SESSION['erreur'] == 9){?>border: solid 1px red; <?php }?>" type="Mail"     name="Mail"      placeholder="Mail*"><br /><br />
 					<input type="checkbox" name="condition" Value="ok"><span <?php if ($_SESSION['erreur'] == 10){ ?> style="color: red;"<?php }?>> J'accepte les conditions generale d'utilisation*</span><br /><br />
 					<button class="button_ins" type="submit" name="inscription" value="Inscription">Inscription</button>
+					<a style="text-decoration: none;" href="./index.php?vue=pass"><p style="color: white;">oublié ??</p></a>
 				</form><br />
 				<?php $_SESSION['erreur'] = 0; ?>
 		</div>	

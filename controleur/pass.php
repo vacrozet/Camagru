@@ -1,23 +1,30 @@
-<?php
+<?php 
+session_start();
 require_once dirname(__DIR__)."/modele/user.class.php";
 
 function send_mail($mail, $login)
 {
-	$message_txt = "Notification Like  | \"CAMAGRU\"";
+	$lien = "http://localhost:8080/camagru/index.php?vue=reinit&login=".$login."";
+	$message_txt = " \"CAMAGRU\"";
 	$message_html = "
 	<html>
 	<head></head>
 	<body style=\"display: flex; flex-direction: column;\">
 		<div style=\"height: 200px; width: 400px; background-color: grey; display: flex;\">
 			<div style=\"margin: auto; height: 100px; width: 200px;\">
-				<p style=\"text-align: center;\"><span style=\"font-size: 20px;\"><B>Bonjour ".$login."</B></span><br />Une personne à like votre photo sur Camagru</p>
+				<p style=\"text-align: center;\"><span style=\"font-size: 20px;\"><B>Oublie MDP Camagru -> ".$login."</B></span><br />Merci de cliquer sur le bouton pour acceder à la page de reinitialisation du mot de pass</p>
+			</div>
+		</div>
+		<div style=\"height: 200px; width: 400px; background-color: grey; display: flex;\">
+			<div style=\"margin: auto;\">
+				<a href=".$lien.">Clique ici pour reinit</a>
 			</div>
 		</div>
 	</body>
 	</html>";
 	$boundary = "-----=".md5(rand());
 	$boundary_alt = "-----=".md5(rand());
-	$sujet = "Notification LIKE";
+	$sujet = "Mot de pass oublier";
 	$header = "From: \"Camagru\"<camagru@gmail.com>".PHP_EOL;
 	$header.= "Reply-to: \"Camagru\" <camagru@gmail.com>".PHP_EOL;
 	$header.= "MIME-Version: 1.0".PHP_EOL;
@@ -36,53 +43,32 @@ function send_mail($mail, $login)
 	$message.= PHP_EOL."--".$boundary.PHP_EOL;
 	mail($mail,$sujet,$message,$header);
 
-	header('Location: ../index.php?vue=10');
+	header('Location: ../index.php');
 }
 
-function prep_mail($login)
-{
+$mail = $_POST['mail'];
 
-$sql = "SELECT * FROM `utilisateur`
-			WHERE `login` LIKE :login";
+$sql = "SELECT * FROM `utilisateur` WHERE `mail` LIKE :mail";
+
+$fields = ['mail' => $mail];
+
+$user = Database::getInstance()->request($sql, $fields, true);
+
+if (count($user) == 1)
+{
+	foreach ($user[0] as $key => $value) {
+		if ($key == "login")
+			$login = $value;
+	}
+	$sql = "UPDATE `utilisateur` SET `Actif`= 'NON' WHERE `login` LIKE :login";
 
 	$fields = ['login' => $login];
 
-$author = Database::getInstance()->request($sql, $fields, true);
-
-foreach ($author[0] as $key => $value) {
-	if ($key == "mail")
-		$mail = $value;
+	$user = Database::getInstance()->request($sql, $fields, true);
+	send_mail($mail, $login);
 }
-
-send_mail($mail, $login);
-}
-
-$index_login = $_POST['id_user'];
-$index_photo = $_POST['id_photo'];
-$author = $_POST['author'];
-
-$sql = "SELECT * FROM `like`
-			WHERE `index_photo` LIKE :index 
-			AND `index_login` LIKE :index_login";
-
-	$fields = [
-				'index' => $index_photo,
-				'index_login' => $index_login
-			];
-
-$alreadylike = Database::getInstance()->request($sql, $fields, true);
-if (count($alreadylike) != 1)
+else
 {
-	$sql = "INSERT INTO `like`(`index`, `index_photo`, `index_login`) 
-			VALUES (NULL, :id_photo, :id_login)";
-	$fields = [
-				'id_photo' => $index_photo,
-				'id_login' => $index_login
-				];
-
-	$lol = Database::getInstance()->request($sql, $fields, true);
+	header('Location: ../index.php?vue=pass');
 }
-
-prep_mail($author);
-
-?>
+ ?>

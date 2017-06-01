@@ -8,7 +8,7 @@
 
 		</div>
 		<div id=command>
-				<button style="background-color: transparent; border: none;"><img id=capture src="./img/capture.png"></button>
+				<button id="capture" style="background-color: transparent; border: none;"><img style="pointer-events: none;" src="./img/capture.png"></button>
 				<input type="hidden" id="inputimg_pris" name="img_pris">
 				<input type="hidden" id="inputpng_pris" name="png_pris">
 				<input type="hidden" id="inputtop_pris" name="top_pris">
@@ -20,7 +20,7 @@
 				<input type="hidden" id="inputleft_prec" name="left_prec">
 				<button style="background-color: transparent; border: none;"><img src="./img/checked.png"></button>
 			</form>
-			<button style="background-color: transparent; border: none;"><img style="cursor: pointer;`" onclick="deleteElemCapt()" src="./img/recycle.png"></button>
+			<button onclick="deleteElemCapt()" style="background-color: transparent; border: none; cursor: pointer;"><img style="pointer-events: none;"  src="./img/recycle.png"></button>
 			<button style="background-color: transparent; border: none;"><img src="./img/upload.png"></button>
 		</div>
 		<div id=upload>
@@ -50,5 +50,5 @@
 		<img onclick="addfiltrephoto('launch')" src="./img/launch.png">
 	</div>
 	<script type="text/javascript" language="JavaScript" src="./Js/drag.js" ></script>
-	<script language="javascript" src="./Js/camera.js"></script>
+	<script type="text/javascript" language="javascript" src="./Js/camera.js"></script>
 </div>
