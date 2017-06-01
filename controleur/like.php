@@ -36,25 +36,22 @@ function send_mail($mail, $login)
 	$message.= PHP_EOL."--".$boundary_alt."--".PHP_EOL;
 	$message.= PHP_EOL."--".$boundary.PHP_EOL;
 	mail($mail,$sujet,$message,$header);
-
 }
 
 function prep_mail($login)
 {
-
-$sql = "SELECT * FROM `utilisateur`
+	$sql = "SELECT * FROM `utilisateur`
 			WHERE `login` LIKE :login";
 
 	$fields = ['login' => $login];
 
-$author = Database::getInstance()->request($sql, $fields, true);
+	$author = Database::getInstance()->request($sql, $fields, true);
 
-foreach ($author as $key => $value) {
-	if ($key == "mail")
-		$mail = $value;
-}
-
-send_mail($mail, $login);
+	foreach ($author[0] as $key => $value) {
+		if ($key == "mail")
+			$mail = $value;
+	}
+	send_mail($mail, $login);
 }
 
 $index_login = $_POST['id_user'];
@@ -65,12 +62,13 @@ $sql = "SELECT * FROM `like`
 			WHERE `index_photo` LIKE :index 
 			AND `index_login` LIKE :index_login";
 
-	$fields = [
-				'index' => $index_photo,
-				'index_login' => $index_login
-			];
+$fields = [
+			'index' => $index_photo,
+			'index_login' => $index_login
+		];
 
 $alreadylike = Database::getInstance()->request($sql, $fields, true);
+
 if (count($alreadylike) != 1)
 {
 	$sql = "INSERT INTO `like`(`index`, `index_photo`, `index_login`) 
@@ -81,8 +79,6 @@ if (count($alreadylike) != 1)
 				];
 
 	$lol = Database::getInstance()->request($sql, $fields, true);
+	prep_mail($author);
 }
-
-prep_mail($author);
-
 ?>

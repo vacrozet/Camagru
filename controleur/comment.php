@@ -19,7 +19,7 @@ function send_mail($mail, $login)
 	</html>";
 	$boundary = "-----=".md5(rand());
 	$boundary_alt = "-----=".md5(rand());
-	$sujet = "Notification LIKE";
+	$sujet = "Notification Commentaire";
 	$header = "From: \"Camagru\"<camagru@gmail.com>".PHP_EOL;
 	$header.= "Reply-to: \"Camagru\" <camagru@gmail.com>".PHP_EOL;
 	$header.= "MIME-Version: 1.0".PHP_EOL;
@@ -50,7 +50,7 @@ function prep_mail($login)
 
 	$author = Database::getInstance()->request($sql, $fields, true);
 
-	foreach ($author as $key => $value) {
+	foreach ($author[0] as $key => $value) {
 		if ($key == "mail")
 			$mail = $value;
 	}
