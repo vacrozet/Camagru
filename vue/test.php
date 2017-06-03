@@ -8,7 +8,7 @@ $sql = "SELECT * FROM `comment` WHERE `id_photo` LIKE :id_photo";
 
 $fields = ['id_photo' => $id_photo];
 
-$allComment = Database::getInstance()->request($sql, $fields, true);
+$= Database::getInstance()->request($sql, $fields, true);
 
 for ($i=0; $i < count($allComment); $i++) { 
 	foreach ($allComment[$i] as $key => $value) {
