@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 01 Juin 2017 à 15:09
+-- Généré le :  Mar 06 Juin 2017 à 09:29
 -- Version du serveur :  5.7.11
 -- Version de PHP :  7.0.0
 
@@ -39,13 +39,6 @@ CREATE TABLE IF NOT EXISTS `comment` (
   PRIMARY KEY (`index`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
---
--- Contenu de la table `comment`
---
-
-INSERT INTO `comment` (`index`, `id_photo`, `id_login`, `login`, `comment`, `date`) VALUES
-(24, 7, 1, 'vacrozet', '<scpt>alert("bonjour");</sipt', '2017-06-01 14:53:44');
-
 -- --------------------------------------------------------
 
 --
@@ -74,7 +67,13 @@ CREATE TABLE IF NOT EXISTS `picture` (
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_photo` int(11) DEFAULT NULL,
   PRIMARY KEY (`index`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `picture`
+--
+
+INSERT INTO `picture` (`index`, `author`, `path`, `date`, `id_photo`) VALUES(10, 'vacrozet', '../img/users/vacrozet1.png', '2017-06-06 09:27:48', NULL);
 
 -- --------------------------------------------------------
 
@@ -98,8 +97,7 @@ CREATE TABLE IF NOT EXISTS `utilisateur` (
 -- Contenu de la table `utilisateur`
 --
 
-INSERT INTO `utilisateur` (`index`, `login`, `password`, `mail`, `Actif`, `admin`, `nb_picture`) VALUES
-(1, 'vacrozet', 'c7f0cefb862a18a00b03eccb8b90a1d045a71d18f9540f5f7bac579b644f7c9db9f3c46954425c47dbc5649496d26e08b0664a22029456b3a62740a338150317', 'crozet.valentin.42@gmail.com', 'OUI', 'OUI', 1);
+INSERT INTO `utilisateur` (`index`, `login`, `password`, `mail`, `Actif`, `admin`, `nb_picture`) VALUES(1, 'vacrozet', 'c7f0cefb862a18a00b03eccb8b90a1d045a71d18f9540f5f7bac579b644f7c9db9f3c46954425c47dbc5649496d26e08b0664a22029456b3a62740a338150317', 'crozet.valentin.42@gmail.com', 'OUI', 'OUI', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
