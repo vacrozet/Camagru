@@ -5,6 +5,7 @@ require_once dirname(__DIR__)."/modele/user.class.php";
 if (isset($_POST['Login']) && isset($_POST['Passwd']) && isset($_POST['Connexion']))
 {
 	$login = $_POST['Login'];
+
 	$passwd = hash('whirlpool', $_POST['Passwd']);
 	$sql = "SELECT * FROM `Utilisateur` 
 	 		WHERE `login` LIKE :login

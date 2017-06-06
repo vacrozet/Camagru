@@ -71,10 +71,10 @@ function check_mail($mail)
 function check_exist($login, $mail)
 {
 	$sql = "SELECT * FROM Utilisateur";
-	$allNews = Database::getInstance()->request($sql);
-	foreach ($allNews as $key => $value) {
-		if (($key == "login" && $value == $login) || 
-			($key == "mail" && $value == $mai))
+	$allUsers = Database::getInstance()->request($sql);
+	foreach ($allUsers as $key => $value) {
+		if (($key == "login" && $value == $login) ||
+			($key == "mail" && $value == $mail))
 			erreur_prog(11);
 	}
 }
@@ -85,6 +85,8 @@ if (!empty($_POST['Login']) && !empty($_POST['Passwd']) &&
 {
 	$login = trim($_POST['Login']);
 	$passwd = check_passwd($_POST['Passwd'], $_POST['Re-passwd']);
+	if (strlen($login) > 10 || strlen($passwd) > 10 || (ctype_alnum($login) == false))
+		erreur_prog(1);
 	$mail = check_mail($_POST['Mail']);
 	check_exist($login, $mail);
 

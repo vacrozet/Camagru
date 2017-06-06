@@ -15,7 +15,7 @@ if (!empty($_GET['login']))
 					$login = $value;
 		}
 	}
-	if (strlen($login) < 30)
+	if (strlen($login) <= 10)
 	{
 	$sql = "UPDATE `utilisateur` SET `Actif` = 'OUI' WHERE `login` LIKE :login";
 

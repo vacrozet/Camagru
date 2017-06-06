@@ -123,7 +123,7 @@ for ($i = $start; $i < $end; $i++) {
 				}			
 			}
 		echo "		<p class=text style=\"margin-top: 10px;\">login: ".$login_comment."</p>";
-		echo "		<p class=text>".$comment."</p>";
+		echo "		<p class=text>".htmlspecialchars($comment)."</p>";
 		}
 	}
 	if (count($allComment) == 1)
