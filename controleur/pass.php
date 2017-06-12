@@ -13,7 +13,7 @@ function send_mail($mail, $login)
 	<body style=\"display: flex; flex-direction: column;\">
 		<div style=\"height: 200px; width: 400px; background-color: grey; display: flex;\">
 			<div style=\"margin: auto; height: 100px; width: 200px;\">
-				<p style=\"text-align: center;\"><span style=\"font-size: 20px;\"><B>Oublie MDP Camagru -> ".$login."</B></span><br />Merci de cliquer sur le bouton pour acceder à la page de reinitialisation du mot de pass</p>
+				<p style=\"text-align: center;\"><span style=\"font-size: 20px;\"><B>Oublie MDP Camagru -> ".htmlspecialchars($login)."</B></span><br />Merci de cliquer sur le bouton pour acceder à la page de reinitialisation du mot de pass</p>
 			</div>
 		</div>
 		<div style=\"height: 200px; width: 400px; background-color: grey; display: flex;\">

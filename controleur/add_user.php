@@ -13,7 +13,7 @@ function send_mail($mail, $login)
 	<body style=\"display: flex; flex-direction: column;\">
 		<div style=\"height: 200px; width: 400px; background-color: grey; display: flex;\">
 			<div style=\"margin: auto; height: 100px; width: 200px;\">
-				<p style=\"text-align: center;\"><span style=\"font-size: 20px;\"><B>Bienvenue sur camagru ".$login."</B></span><br />Merci de cliquer sur le bouton pour comfirmer votre inscription</p>
+				<p style=\"text-align: center;\"><span style=\"font-size: 20px;\"><B>Bienvenue sur camagru ".htmlspecialchars($login)."</B></span><br />Merci de cliquer sur le bouton pour comfirmer votre inscription</p>
 			</div>
 		</div>
 		<div style=\"height: 200px; width: 400px; background-color: grey; display: flex;\">
@@ -85,7 +85,9 @@ if (!empty($_POST['Login']) && !empty($_POST['Passwd']) &&
 {
 	$login = trim($_POST['Login']);
 	$passwd = check_passwd($_POST['Passwd'], $_POST['Re-passwd']);
-	if (strlen($login) > 10 || strlen($passwd) > 10 || (ctype_alnum($login) == false))
+	if (strlen($login) > 10 || strlen($_POST['Passwd']) > 10)
+		erreur_prog(1);
+	if (ctype_alnum($login) == false && ctype_alpha($login) == false)
 		erreur_prog(1);
 	$mail = check_mail($_POST['Mail']);
 	check_exist($login, $mail);
@@ -102,6 +104,6 @@ if (!empty($_POST['Login']) && !empty($_POST['Passwd']) &&
 	$_SESSION['erreur'] = 12;
 }
 else
-	$_SESSION['erreur'] = 1;
+	$_SESSION['erreur'] = 2;
 header('Location: ../index.php');
 ?>

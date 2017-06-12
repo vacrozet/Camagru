@@ -12,7 +12,7 @@ function send_mail($mail, $login)
 	<body style=\"display: flex; flex-direction: column;\">
 		<div style=\"height: 200px; width: 400px; background-color: grey; display: flex;\">
 			<div style=\"margin: auto; height: 100px; width: 200px;\">
-				<p style=\"text-align: center;\"><span style=\"font-size: 20px;\"><B>Bonjour ".$login."</B></span><br />Une personne à commenté votre photo sur Camagru</p>
+				<p style=\"text-align: center;\"><span style=\"font-size: 20px;\"><B>Bonjour ".htmlspecialchars($login)."</B></span><br />Une personne à commenté votre photo sur Camagru</p>
 			</div>
 		</div>
 	</body>
